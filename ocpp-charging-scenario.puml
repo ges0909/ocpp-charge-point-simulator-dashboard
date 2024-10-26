@@ -1,0 +1,51 @@
+@startuml Charging scenario
+
+title OCPP Charging scenario
+
+participant "Charge Point" as CP
+participant "Central System" as CMS
+
+' --
+
+note over CP
+[[https://www.ampcontrol.io/ocpp-guide/how-to-start-an-ocpp-charging-session-with-starttransaction How to start a charging session with startTransaction]]
+end note
+
+note over CP, CMS
+Plug-in Events and Status Notification
+status= {Available, Charging, Finishing, Reserved, Faulted}
+end note
+
+CP ->  CMS : StatusNotification.req(connectorId, errorCode, status, [timestamp], [info], [vendorId], [vendorErrorCode])
+activate CP
+activate CMS
+
+CP <- CMS : StatusNotification.conf()
+deactivate CMS
+deactivate CP
+
+' --
+
+note over CP, CMS: Vehicle Authorization Request and idTag
+
+CP ->  CMS : Authorize.req(idTag)
+activate CP
+activate CMS
+
+CP <- CMS : Authorize.conf(idTagInfo)
+deactivate CMS
+deactivate CP
+
+' --
+
+note over CP, CMS: Start Charging Request and Energy Offering
+
+CP ->  CMS : StartTransaction.req(connectorId, idTag, meterStart, timestamp, [reservationId])
+activate CP
+activate CMS
+
+CP <- CMS : StartTransaction.conf(idTagInfo, transactionId)
+deactivate CMS
+deactivate CP
+
+@enduml
