@@ -1,0 +1,100 @@
+@startuml OCPP Charging
+
+title [[https://www.ampcontrol.io/ocpp-guide/how-to-use-ocpp-for-your-ev-charging-operations OCPP Charging Operations]]
+
+participant "Charge Point" as CP
+participant "Central System" as CMS
+
+' --
+
+== [[https://www.ampcontrol.io/ocpp-guide/how-to-start-an-ocpp-charging-session-with-starttransaction How to start a charging session with startTransaction]]  ==
+
+'-- note over CP
+'-- [[https://www.ampcontrol.io/ocpp-guide/how-to-start-an-ocpp-charging-session-with-starttransaction How to start a charging session with startTransaction]]
+'-- end note
+
+note left of CMS: status=Available | Preparing | Charging | Finsihing | Reserved | Faulted
+
+CP ->  CMS : StatusNotification.req(connectorId, errorCode=NoError, status=Available, [timestamp], [info], [vendorId], [vendorErrorCode])
+activate CP
+activate CMS
+
+CP <- CMS : StatusNotification.conf()
+deactivate CMS
+deactivate CP
+
+'--
+
+[-> CP: Put plug into vehicle’s inlet
+
+CP ->  CMS : StatusNotification.req(connectorId, errorCode=NoError, status=Preparing, [timestamp], [info], [vendorId], [vendorErrorCode])
+activate CP
+activate CMS
+
+CP <- CMS : StatusNotification.conf()
+deactivate CMS
+deactivate CP
+
+' --
+
+[-> CP: Authorize EV by RFID, app, etc.
+
+CP ->  CMS : Authorize.req(idTag)
+activate CP
+activate CMS
+
+CP <- CMS : Authorize.conf(idTagInfo.status=Accepted)
+deactivate CMS
+deactivate CP
+
+note right of CP: idTagInfo.status=Accepted | Invalid | Blocked | Expired
+
+' --
+
+== [[https://www.ampcontrol.io/ocpp-guide/how-to-use-smart-charging-with-ocpp How to use smart charging with OCPP]]  ==
+
+note left of CMS: meterStart = Energy in Wh
+
+CP ->  CMS : StartTransaction.req(connectorId, idTag, meterStart, timestamp, [reservationId])
+activate CP
+activate CMS
+
+CP <- CMS : StartTransaction.conf(idTagInfo, transactionId)
+deactivate CMS
+deactivate CP
+
+' --
+
+CP ->  CMS : MeterValue.req(connectorId, meterValue, [transactionId])
+activate CP
+activate CMS
+
+CP <- CMS : MeterValue.conf(idTagInfo, transactionId)
+deactivate CMS
+deactivate CP
+
+' --
+
+== [[https://www.ampcontrol.io/ocpp-guide/how-to-stop-a-charging-session-with-stoptransaction How to stop a charging session with stopTransaction]]  ==
+
+[-> CP: ???
+
+CP ->  CMS : StatusNotification.req(connectorId, errorCode=NoError, status=Finishinh, [timestamp], [info], [vendorId], [vendorErrorCode])
+activate CP
+activate CMS
+
+CP <- CMS : StatusNotification.conf()
+deactivate CMS
+deactivate CP
+
+'--
+
+CP ->  CMS : StopTransaction.req(meterStop, timestamp, transactionId, reason, [idTag], [transactionDate])
+activate CP
+activate CMS
+
+CP <- CMS : StopTransaction.conf(idTagInfo)
+deactivate CMS
+deactivate CP
+
+@enduml
