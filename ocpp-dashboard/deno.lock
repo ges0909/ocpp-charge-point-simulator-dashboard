@@ -5,7 +5,8 @@
     "npm:typescript@~5.6.2": "5.6.3",
     "npm:vite@^5.4.9": "5.4.10",
     "npm:vue-tsc@^2.1.6": "2.1.6_typescript@5.6.3",
-    "npm:vue@^3.5.12": "3.5.12_typescript@5.6.3"
+    "npm:vue@^3.5.12": "3.5.12_typescript@5.6.3",
+    "npm:vuetify@^3.7.3": "3.7.3_typescript@5.6.3_vue@3.5.12__typescript@5.6.3"
   },
   "npm": {
     "@babel/helper-string-parser@7.25.9": {
@@ -419,6 +420,13 @@
         "@vue/shared",
         "typescript"
       ]
+    },
+    "vuetify@3.7.3_typescript@5.6.3_vue@3.5.12__typescript@5.6.3": {
+      "integrity": "sha512-bpuvBpZl1/+nLlXDgdVXekvMNR6W/ciaoa8CYlpeAzAARbY8zUFSoBq05JlLhkIHI58AnzKVy4c09d0OtfYAPg==",
+      "dependencies": [
+        "typescript",
+        "vue"
+      ]
     }
   },
   "workspace": {
@@ -428,7 +436,8 @@
         "npm:typescript@~5.6.2",
         "npm:vite@^5.4.9",
         "npm:vue-tsc@^2.1.6",
-        "npm:vue@^3.5.12"
+        "npm:vue@^3.5.12",
+        "npm:vuetify@^3.7.3"
       ]
     }
   }

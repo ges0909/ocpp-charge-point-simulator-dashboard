@@ -2,15 +2,15 @@
 
 ## Deno 2.0
 
-Install Deno 2.0:
+Deno is an open-source JavaScript runtime. [Why Deno 2.0?](https://www.heise.de/blog/JavaScript-Runtime-Deno-2-0-Ist-die-neue-Version-das-bessere-Node-js-9987604.html)
 
-Deno is the open-source JavaScript runtime.
+Install Deno:
 
 ```pwsh
 winget install DenoLand.Deno
 ```
 
-Check installation in a new shell:
+Check installation in new shell, because `PATH` variable was changed:
 
 ```bash
 deno --version
@@ -29,9 +29,9 @@ v8 12.9.202.13-rusty
 typescript 5.6.2
 ```
 
-## Project setup
+## Project Scaffolding
 
-Scaffold project with Vite ([Build a Vue.js App](https://docs.deno.com/runtime/tutorials/how_to_with_npm/vue/)):
+Setup project with Vite (see: [Build a Vue.js App](https://docs.deno.com/runtime/tutorials/how_to_with_npm/vue/)):
 
 ```bash
 deno run -A npm:create-vite
@@ -40,13 +40,10 @@ deno install
 deno task dev
 ```
 
-```bash
-deno install npm:bootstrap npm:bootstrap-vue
-deno uninstall npm:bootstrap npm:bootstrap-vue
-
-deno install npm:vuetify npm:vite-plugin-vuetify
-```
-
 ## Vue 3
 
 - [Vue 3 Tutorial für Einsteiger](https://vuejs.de/artikel/vuejs-tutorial-deutsch-anfaenger/)
+
+## Vuetify
+
+- [Setting up vue 3 with vuetify, icons and themes](https://www.the-koi.com/projects/setting-up-vue-3-with-vuetify-icons-and-themes/)

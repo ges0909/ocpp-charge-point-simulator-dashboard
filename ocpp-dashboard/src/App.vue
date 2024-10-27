@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import HelloWorld from "./components/HelloWorld.vue";
-import Calculator from "./components/Calculator.vue";
-import HelloWorld from "./components/HelloWorld.vue";
+// import Calculator from "./components/Calculator.vue";
+import Dashboard from "./components/Dashboard.vue";
 </script>
 
 <template>
@@ -16,7 +16,12 @@ import HelloWorld from "./components/HelloWorld.vue";
   </div>
   <HelloWorld msg="Vite + Vue" />
   -->
+
+  <!--
   <Calculator />
+  -->
+
+  <Dashboard />
 </template>
 
 <style scoped>
