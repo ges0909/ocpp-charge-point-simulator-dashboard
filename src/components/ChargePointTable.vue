@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="stations"
     :sort-by="[{ key: 'calories', order: 'asc' }]"
   >
     <template v-slot:top>
@@ -26,31 +26,19 @@
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                     v-model="editedItem.name"
-                    label="Dessert name"
+                    :label="t('message.header_name')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.calories"
-                    label="Calories"
+                    v-model="editedItem.backendUrl"
+                    :label="t('message.header_backend_url')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.fat"
-                    label="Fat (g)"
-                  ></v-text-field>
-                </v-row>
-                <v-row cols="12" md="4" sm="6">
-                  <v-text-field
-                    v-model="editedItem.carbs"
-                    label="Carbs (g)"
-                  ></v-text-field>
-                </v-row>
-                <v-row cols="12" md="4" sm="6">
-                  <v-text-field
-                    v-model="editedItem.protein"
-                    label="Protein (g)"
+                    v-model="editedItem.connectors"
+                    :label="t('message.header_connectors')"
                   ></v-text-field>
                 </v-row>
               </v-container>
@@ -106,131 +94,108 @@ import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
 
 const { t } = useI18n();
-
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
   {
-    title: "Dessert (100g serving)",
-    align: "start",
-    sortable: false,
+    title: t("message.header_name"),
     key: "name",
+    align: "start",
   },
-  { title: "Calories", key: "calories" },
-  { title: "Fat (g)", key: "fat" },
-  { title: "Carbs (g)", key: "carbs" },
-  { title: "Protein (g)", key: "protein" },
+  { title: t("message.header_connectors"), key: "connectors" },
+  { title: t("message.header_connection_state"), key: "connection-state" },
   { title: t("message.actions"), key: "actions", sortable: false },
 ]);
-const desserts: Ref = ref([]);
+const stations: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
-  calories: 0,
-  fat: 0,
-  carbs: 0,
-  protein: 0,
+  backendUrl: "http://localhost:3000",
+  connectors: 1,
 });
 const defaultItem = ref({
   name: "",
-  calories: 0,
-  fat: 0,
-  carbs: 0,
-  protein: 0,
+  backendUrl: "http://localhost:3000",
+  connectors: 1,
 });
 const formTitle = computed(() => {
   return editedIndex.value === -1
     ? t("message.title_add")
     : t("message.title_edit");
 });
+
 function initialize() {
-  desserts.value = [
+  stations.value = [
     {
       name: "Frozen Yogurt",
-      calories: 159,
-      fat: 6,
-      carbs: 24,
-      protein: 4,
+      connectors: 2,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Ice cream sandwich",
-      calories: 237,
-      fat: 9,
-      carbs: 37,
-      protein: 4.3,
+      connectors: 2,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Eclair",
-      calories: 262,
-      fat: 16,
-      carbs: 23,
-      protein: 6,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Cupcake",
-      calories: 305,
-      fat: 3.7,
-      carbs: 67,
-      protein: 4.3,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Gingerbread",
-      calories: 356,
-      fat: 16,
-      carbs: 49,
-      protein: 3.9,
+      connectors: 3,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Jelly bean",
-      calories: 375,
-      fat: 0,
-      carbs: 94,
-      protein: 0,
+      connectors: 2,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Lollipop",
-      calories: 392,
-      fat: 0.2,
-      carbs: 98,
-      protein: 0,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Honeycomb",
-      calories: 408,
-      fat: 3.2,
-      carbs: 87,
-      protein: 6.5,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "Donut",
-      calories: 452,
-      fat: 25,
-      carbs: 51,
-      protein: 4.9,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
     {
       name: "KitKat",
-      calories: 518,
-      fat: 26,
-      carbs: 65,
-      protein: 7,
+      connectors: 1,
+      backendUrl: "http://localhost:3000",
     },
   ];
 }
+
 function editItem(item) {
-  editedIndex.value = desserts.value.indexOf(item);
+  editedIndex.value = stations.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialog.value = true;
 }
+
 function deleteItem(item) {
-  editedIndex.value = desserts.value.indexOf(item);
+  editedIndex.value = stations.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialogDelete.value = true;
 }
+
 function deleteItemConfirm() {
-  desserts.value.splice(editedIndex.value, 1);
+  stations.value.splice(editedIndex.value, 1);
   closeDelete();
 }
+
 function close() {
   dialog.value = false;
   nextTick(() => {
@@ -238,6 +203,7 @@ function close() {
     editedIndex.value = -1;
   });
 }
+
 function closeDelete() {
   dialogDelete.value = false;
   nextTick(() => {
@@ -245,19 +211,23 @@ function closeDelete() {
     editedIndex.value = -1;
   });
 }
+
 function save() {
   if (editedIndex.value > -1) {
-    Object.assign(desserts.value[editedIndex.value], editedItem.value);
+    Object.assign(stations.value[editedIndex.value], editedItem.value);
   } else {
-    desserts.value.push(editedItem.value);
+    stations.value.push(editedItem.value);
   }
   close();
 }
+
 watch(dialog, (val) => {
   val || close();
 });
+
 watch(dialogDelete, (val) => {
   val || closeDelete();
 });
+
 initialize();
 </script>

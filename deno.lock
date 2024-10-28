@@ -1,10 +1,13 @@
 {
   "version": "4",
   "specifiers": {
+    "npm:@fortawesome/fontawesome-free@^6.6.0": "6.6.0",
+    "npm:@mdi/font@^7.4.47": "7.4.47",
     "npm:@vitejs/plugin-vue@^5.1.4": "5.1.4_vite@5.4.10_vue@3.5.12__typescript@5.6.3_typescript@5.6.3",
     "npm:typescript@~5.6.2": "5.6.3",
     "npm:vite-plugin-vuetify@^2.0.4": "2.0.4_vite@5.4.10_vue@3.5.12__typescript@5.6.3_vuetify@3.7.3__typescript@5.6.3__vue@3.5.12___typescript@5.6.3_vuetify@3.7.3__typescript@5.6.3__vue@3.5.12___typescript@5.6.3__vite-plugin-vuetify@2.0.4_typescript@5.6.3",
     "npm:vite@^5.4.9": "5.4.10",
+    "npm:vue-i18n@^10.0.4": "10.0.4_vue@3.5.12__typescript@5.6.3_typescript@5.6.3",
     "npm:vue-tsc@^2.1.6": "2.1.6_typescript@5.6.3",
     "npm:vue@^3.5.12": "3.5.12_typescript@5.6.3",
     "npm:vuetify@^3.7.3": "3.7.3_typescript@5.6.3_vue@3.5.12__typescript@5.6.3"
@@ -98,8 +101,31 @@
     "@esbuild/win32-x64@0.21.5": {
       "integrity": "sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw=="
     },
+    "@fortawesome/fontawesome-free@6.6.0": {
+      "integrity": "sha512-60G28ke/sXdtS9KZCpZSHHkCbdsOGEhIUGlwq6yhY74UpTiToIh8np7A8yphhM4BWsvNFtIvLpi4co+h9Mr9Ow=="
+    },
+    "@intlify/core-base@10.0.4": {
+      "integrity": "sha512-GG428DkrrWCMhxRMRQZjuS7zmSUzarYcaHJqG9VB8dXAxw4iQDoKVQ7ChJRB6ZtsCsX3Jse1PEUlHrJiyQrOTg==",
+      "dependencies": [
+        "@intlify/message-compiler",
+        "@intlify/shared"
+      ]
+    },
+    "@intlify/message-compiler@10.0.4": {
+      "integrity": "sha512-AFbhEo10DP095/45EauinQJ5hJ3rJUmuuqltGguvc3WsvezZN+g8qNHLGWKu60FHQVizMrQY7VJ+zVlBXlQQkQ==",
+      "dependencies": [
+        "@intlify/shared",
+        "source-map-js"
+      ]
+    },
+    "@intlify/shared@10.0.4": {
+      "integrity": "sha512-ukFn0I01HsSgr3VYhYcvkTCLS7rGa0gw4A4AMpcy/A9xx/zRJy7PS2BElMXLwUazVFMAr5zuiTk3MQeoeGXaJg=="
+    },
     "@jridgewell/sourcemap-codec@1.5.0": {
       "integrity": "sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ=="
+    },
+    "@mdi/font@7.4.47": {
+      "integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
     },
     "@rollup/rollup-android-arm-eabi@4.24.0": {
       "integrity": "sha512-Q6HJd7Y6xdB48x8ZNVDOqsbh2uByBhgK8PiQgPhwkIw/HC/YX5Ghq2mQY5sRMZWHb3VsFkWooUVOZHKr7DmDIA=="
@@ -220,6 +246,9 @@
         "de-indent",
         "he"
       ]
+    },
+    "@vue/devtools-api@6.6.4": {
+      "integrity": "sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g=="
     },
     "@vue/language-core@2.1.6_typescript@5.6.3": {
       "integrity": "sha512-MW569cSky9R/ooKMh6xa2g1D0AtRKbL56k83dzus/bx//RDJk24RHWkMzbAlXjMdDNyxAaagKPRquBIxkxlCkg==",
@@ -432,6 +461,15 @@
     },
     "vscode-uri@3.0.8": {
       "integrity": "sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw=="
+    },
+    "vue-i18n@10.0.4_vue@3.5.12__typescript@5.6.3_typescript@5.6.3": {
+      "integrity": "sha512-1xkzVxqBLk2ZFOmeI+B5r1J7aD/WtNJ4j9k2mcFcQo5BnOmHBmD7z4/oZohh96AAaRZ4Q7mNQvxc9h+aT+Md3w==",
+      "dependencies": [
+        "@intlify/core-base",
+        "@intlify/shared",
+        "@vue/devtools-api",
+        "vue"
+      ]
     },
     "vue-tsc@2.1.6_typescript@5.6.3": {
       "integrity": "sha512-f98dyZp5FOukcYmbFpuSCJ4Z0vHSOSmxGttZJCsFeX0M4w/Rsq0s4uKXjcSRsZqsRgQa6z7SfuO+y0HVICE57Q==",
