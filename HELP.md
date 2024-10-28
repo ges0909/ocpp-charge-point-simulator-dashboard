@@ -57,3 +57,9 @@ deno task dev
 deno install npm:vuetify npm:vite-plugin-vuetify
 deno install npm:@fortawesome/fontawesome-free npm:@mdi/font
 ```
+
+## I18N
+
+```bash
+deno install npm:vue-i18n@10
+```
