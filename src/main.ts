@@ -38,22 +38,26 @@ const i18n = createI18n({
   messages: {
     de: {
       message: {
-        add: "Hinzufügen",
-        apply: "Anwenden",
         ok: "OK",
         cancel: "Abbrechen",
+        add: "Hinzufügen",
+        edit: "Ändern",
         remove: "Ladestation entfernen?",
         title: "Übersicht Ladestationen",
+        form_title_add: "Neue Ladestation",
+        form_title_edit: "Ladestation ändern",
       },
     },
     en: {
       message: {
-        add: "Add",
-        apply: "Apply",
         ok: "OK",
         cancel: "Cancel",
+        add: "Add",
+        edit: "Change",
         remove: "Remove the charging station?",
         title: "Overview o charging stations",
+        form_title_add: "New charging station",
+        form_title_edit: "Change charging station",
       },
     },
   },
