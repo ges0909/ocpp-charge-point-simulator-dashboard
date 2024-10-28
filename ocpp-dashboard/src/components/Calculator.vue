@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { ref, computed, ComputedRef } from "vue";
-
-const num1: any = ref(0);
-const num2: any = ref(0);
-const sum: ComputedRef<number> = computed(
-  () => parseInt(num1.value, 10) + parseInt(num2.value, 10)
-);
-</script>
-
 <template>
   <h3>Calculator</h3>
   <form>
@@ -17,5 +7,15 @@ const sum: ComputedRef<number> = computed(
   </form>
   <p>Result: {{ sum }}</p>
 </template>
+
+<script setup lang="ts">
+import { ref, computed, ComputedRef } from "vue";
+
+const num1: any = ref(0);
+const num2: any = ref(0);
+const sum: ComputedRef<number> = computed(
+  () => parseInt(num1.value, 10) + parseInt(num2.value, 10)
+);
+</script>
 
 <style scoped></style>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // import HelloWorld from "./components/HelloWorld.vue";
 // import Calculator from "./components/Calculator.vue";
-import Dashboard from "./components/Dashboard.vue";
+// import Dashboard from "./components/Dashboard.vue";
+import ChargePointTable from "./components/ChargePointTable.vue";
 </script>
 
 <template>
@@ -19,9 +20,10 @@ import Dashboard from "./components/Dashboard.vue";
 
   <!--
   <Calculator />
+  <Dashboard />
   -->
 
-  <Dashboard />
+  <ChargePointTable />
 </template>
 
 <style scoped>

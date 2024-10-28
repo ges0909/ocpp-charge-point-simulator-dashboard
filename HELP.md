@@ -47,3 +47,8 @@ deno task dev
 ## Vuetify
 
 - [Setting up vue 3 with vuetify, icons and themes](https://www.the-koi.com/projects/setting-up-vue-3-with-vuetify-icons-and-themes/)
+
+```bash
+
+
+```
