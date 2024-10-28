@@ -54,6 +54,6 @@ deno task dev
 - [Setting up vue 3 with vuetify, icons and themes](https://www.the-koi.com/projects/setting-up-vue-3-with-vuetify-icons-and-themes/)
 
 ```bash
-
-
+deno install npm:vuetify npm:vite-plugin-vuetify
+deno install npm:@fortawesome/fontawesome-free npm:@mdi/font
 ```

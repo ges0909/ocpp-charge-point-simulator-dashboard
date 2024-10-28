@@ -105,8 +105,8 @@
   </v-data-table>
 </template>
 
-<script setup>
-import { computed, nextTick, ref, watch } from "vue";
+<script setup lang="ts">
+import { computed, nextTick, ref, watch, Ref } from "vue";
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -123,7 +123,7 @@ const headers = ref([
   { title: "Protein (g)", key: "protein" },
   { title: "Actions", key: "actions", sortable: false },
 ]);
-const desserts = ref([]);
+const desserts: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
