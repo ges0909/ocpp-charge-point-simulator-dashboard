@@ -37,6 +37,11 @@ Setup project with Vite (see: [Build a Vue.js App](https://docs.deno.com/runtime
 deno run -A npm:create-vite
 cd .\ocpp-dashboard
 deno install
+```
+
+## Development
+
+```bash
 deno task dev
 ```
 
