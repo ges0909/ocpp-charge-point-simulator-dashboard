@@ -11,7 +11,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 import { createI18n } from "vue-i18n";
 
-// import "./style.css";
+import "./style.css";
 import App from "./App.vue";
 
 const app = createApp(App);
@@ -41,11 +41,11 @@ const i18n = createI18n({
         ok: "OK",
         cancel: "Abbrechen",
         add: "Hinzufügen",
-        edit: "Ändern",
         remove: "Ladestation entfernen?",
         title: "Übersicht Ladestationen",
-        form_title_add: "Neue Ladestation",
-        form_title_edit: "Ladestation ändern",
+        title_add: "Ladestation hinzufügen",
+        title_edit: "Ladestation ändern",
+        actions: "Aktionen",
       },
     },
     en: {
@@ -53,11 +53,11 @@ const i18n = createI18n({
         ok: "OK",
         cancel: "Cancel",
         add: "Add",
-        edit: "Change",
         remove: "Remove the charging station?",
         title: "Overview o charging stations",
-        form_title_add: "New charging station",
-        form_title_edit: "Change charging station",
+        title_add: "Add charging station",
+        title_edit: "Change charging station",
+        actions: "Actions",
       },
     },
   },

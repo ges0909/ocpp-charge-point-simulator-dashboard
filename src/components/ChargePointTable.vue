@@ -61,7 +61,7 @@
                 {{ $t("message.cancel") }}
               </v-btn>
               <v-btn color="blue-darken-1" variant="text" @click="save">
-                {{ buttonTitle }}
+                {{ $t("message.ok") }}
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -120,7 +120,7 @@ const headers = ref([
   { title: "Fat (g)", key: "fat" },
   { title: "Carbs (g)", key: "carbs" },
   { title: "Protein (g)", key: "protein" },
-  { title: "Actions", key: "actions", sortable: false },
+  { title: t("message.actions"), key: "actions", sortable: false },
 ]);
 const desserts: Ref = ref([]);
 const editedIndex = ref(-1);
@@ -140,11 +140,8 @@ const defaultItem = ref({
 });
 const formTitle = computed(() => {
   return editedIndex.value === -1
-    ? t("message.form_title_add")
-    : t("message.form_title_edit");
-});
-const buttonTitle = computed(() => {
-  return editedIndex.value === -1 ? t("message.add") : t("message.edit");
+    ? t("message.title_add")
+    : t("message.title_edit");
 });
 function initialize() {
   desserts.value = [
