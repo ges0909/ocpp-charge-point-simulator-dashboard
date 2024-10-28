@@ -1,16 +1,32 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="stations"
-    :sort-by="[{ key: 'calories', order: 'asc' }]"
+    :items="items"
+    :sort-by="[{ key: 'name', order: 'asc' }]"
   >
+    <!-- table columns -->
+
+    <template v-slot:item.connected="{ item }">
+      <div class="text-begin">
+        <v-chip
+          :color="item.connected ? 'green' : 'red'"
+          :text="
+            item.connected ? t('message.connected') : t('message.disconnected')
+          "
+          class="text-uppercase"
+          size="small"
+          label
+        ></v-chip>
+      </div>
+    </template>
+
+    <!-- add item dialog -->
+
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>
           {{ $t("message.title") }}
         </v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
-        <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props">
@@ -44,7 +60,6 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
               <v-btn color="blue-darken-1" variant="text" @click="close">
                 {{ $t("message.cancel") }}
               </v-btn>
@@ -54,13 +69,15 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
+        <!-- delete item dialog -->
+
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">
               {{ $t("message.remove") }}
             </v-card-title>
             <v-card-actions>
-              <v-spacer></v-spacer>
               <v-btn color="blue-darken-1" variant="text" @click="closeDelete">
                 {{ $t("message.cancel") }}
               </v-btn>
@@ -71,7 +88,6 @@
               >
                 {{ $t("message.ok") }}</v-btn
               >
-              <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -103,10 +119,10 @@ const headers = ref([
     align: "start",
   },
   { title: t("message.header_connectors"), key: "connectors" },
-  { title: t("message.header_connection_state"), key: "connection-state" },
+  { title: t("message.header_connection_state"), key: "connected" },
   { title: t("message.actions"), key: "actions", sortable: false },
 ]);
-const stations: Ref = ref([]);
+const items: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
@@ -125,74 +141,84 @@ const formTitle = computed(() => {
 });
 
 function initialize() {
-  stations.value = [
+  items.value = [
     {
       name: "Frozen Yogurt",
       connectors: 2,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Ice cream sandwich",
       connectors: 2,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Eclair",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: false,
     },
     {
       name: "Cupcake",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Gingerbread",
       connectors: 3,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Jelly bean",
       connectors: 2,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Lollipop",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: false,
     },
     {
       name: "Honeycomb",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "Donut",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
     {
       name: "KitKat",
       connectors: 1,
       backendUrl: "http://localhost:3000",
+      connected: true,
     },
   ];
 }
 
 function editItem(item) {
-  editedIndex.value = stations.value.indexOf(item);
+  editedIndex.value = items.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialog.value = true;
 }
 
 function deleteItem(item) {
-  editedIndex.value = stations.value.indexOf(item);
+  editedIndex.value = items.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialogDelete.value = true;
 }
 
 function deleteItemConfirm() {
-  stations.value.splice(editedIndex.value, 1);
+  items.value.splice(editedIndex.value, 1);
   closeDelete();
 }
 
@@ -214,9 +240,9 @@ function closeDelete() {
 
 function save() {
   if (editedIndex.value > -1) {
-    Object.assign(stations.value[editedIndex.value], editedItem.value);
+    Object.assign(items.value[editedIndex.value], editedItem.value);
   } else {
-    stations.value.push(editedItem.value);
+    items.value.push(editedItem.value);
   }
   close();
 }

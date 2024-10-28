@@ -50,6 +50,8 @@ const i18n = createI18n({
         header_connectors: "Anzahl Anschlüsse",
         header_connection_state: "Verbindungsstatus",
         header_backend_url: "Backend URL",
+        connected: "Verbunden",
+        disconnected: "Getrennt",
       },
     },
     en: {
@@ -66,6 +68,8 @@ const i18n = createI18n({
         header_connectors: "Number Connectors",
         header_connection_state: "Connection state",
         header_backend_url: "Backend URL",
+        connected: "Connected",
+        disconnected: "Disconnected",
       },
     },
   },
