@@ -6,12 +6,15 @@
   >
     <!-- table columns -->
 
-    <template v-slot:item.connected="{ item }">
+    <!-- column: connection state -->
+    <template v-slot:item.connection_state="{ item }">
       <div class="text-begin">
         <v-chip
-          :color="item.connected ? 'green' : 'red'"
+          :color="item.connection_state ? 'green' : 'red'"
           :text="
-            item.connected ? t('message.connected') : t('message.disconnected')
+            item.connection_state
+              ? t('message.connected')
+              : t('message.disconnected')
           "
           class="text-uppercase"
           size="small"
@@ -20,8 +23,28 @@
       </div>
     </template>
 
-    <!-- add item dialog -->
+    <!-- column: charging state -->
+    <template v-slot:item.charging_state="{ item }">
+      <div class="h-50 w-50">
+        <v-select
+          :items="chargingStates"
+          v-model="item.charging_state"
+          density="compact"
+        ></v-select>
+      </div>
+    </template>
 
+    <!-- column: actions -->
+    <template v-slot:item.actions="{ item }">
+      <v-icon class="me-2" size="small" @click="editItem(item)">
+        mdi-pencil
+      </v-icon>
+      <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
+    </template>
+
+    <!-- dialogs -->
+
+    <!-- dialog:  add item -->
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>
@@ -70,8 +93,7 @@
           </v-card>
         </v-dialog>
 
-        <!-- delete item dialog -->
-
+        <!-- dialog: delete item -->
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">
@@ -91,16 +113,9 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
+        <!---->
       </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon class="me-2" size="small" @click="editItem(item)">
-        mdi-pencil
-      </v-icon>
-      <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize"> Reset </v-btn>
     </template>
   </v-data-table>
 </template>
@@ -119,7 +134,9 @@ const headers = ref([
     align: "start",
   },
   { title: t("message.header_connectors"), key: "connectors" },
-  { title: t("message.header_connection_state"), key: "connected" },
+  { title: t("message.header_connection_state"), key: "connection_state" },
+  { title: t("message.header_charging_state"), key: "charging_state" },
+  { title: t("message.header_meter_value"), key: "meter_value" },
   { title: t("message.actions"), key: "actions", sortable: false },
 ]);
 const items: Ref = ref([]);
@@ -140,67 +157,100 @@ const formTitle = computed(() => {
     : t("message.title_edit");
 });
 
+const chargingStates = [
+  "Available",
+  "Preparing",
+  "Charging",
+  "Finishing",
+  "Reserved",
+  "Faulted",
+  "Accepted",
+  "Invalid",
+  "Blocked",
+  "Expired",
+];
+
 function initialize() {
   items.value = [
     {
       name: "Frozen Yogurt",
       connectors: 2,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Ice cream sandwich",
       connectors: 2,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Eclair",
       connectors: 1,
+      connection_state: false,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: false,
     },
     {
       name: "Cupcake",
       connectors: 1,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Gingerbread",
       connectors: 3,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Jelly bean",
       connectors: 2,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Lollipop",
       connectors: 1,
+      connection_state: false,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: false,
     },
     {
       name: "Honeycomb",
       connectors: 1,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "Donut",
       connectors: 1,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
     {
       name: "KitKat",
       connectors: 1,
+      connection_state: true,
+      charging_state: "Available",
+      meter_value: "",
       backendUrl: "http://localhost:3000",
-      connected: true,
     },
   ];
 }
