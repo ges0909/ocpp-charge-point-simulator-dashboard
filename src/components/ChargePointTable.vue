@@ -156,7 +156,7 @@ const formTitle = computed(() => {
     : t("message.title_edit");
 });
 
-// const connectionStates = ["None", "Connected", "Disconnected", "Timeout"];
+// const connectionStates = ["Connected", "Disconnected", "Timeout"];
 
 const chargingStates = [
   "Available",
@@ -176,115 +176,130 @@ function initialize() {
     {
       name: "Frozen Yogurt",
       connectors: 2,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Ice cream sandwich",
       connectors: 2,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Eclair",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Cupcake",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Gingerbread",
       connectors: 3,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Jelly bean",
       connectors: 2,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Lollipop",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Honeycomb",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "Donut",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
     {
       name: "KitKat",
       connectors: 1,
-      connection_state: "None",
+      connection_state: "Disconnected",
       charging_state: "Available",
       meter_value: "",
-      backend_url: default_backend_url,
       connection_state_color: ref("grey"),
+      backend_url: default_backend_url,
+      socket: null,
     },
   ];
 
   items.value.forEach((item) => {
-    const socket = io(item.backend_url, {
+    item.socket = io(item.backend_url, {
       transports: ["websocket"],
       autoConnect: true,
       timeout: 20000, // timeout in milliseconds for each connection attempt
     });
-    socket.on("connect", () => {
+    item.socket.on("connect", () => {
       item.connection_state = "Connected";
       item.connection_state_color = "green";
       console.log(`${item.name} connected`);
     });
-    socket.on("disconnect", () => {
+    item.socket.io.on("ping", () => {
+      item.connection_state = "Connected";
+      item.connection_state_color = "green";
+      console.log(`${item.name} ping`);
+    });
+    item.socket.on("disconnect", (reason: string, detail: string) => {
       item.connection_state = "Disconnected";
       item.connection_state_color = "orange";
-      console.log(`${item.name} disconnect`);
+      console.log(`${item.name} disconnect: reason ${reason}, ${detail}`);
     });
-    socket.io.on("error", (error) => {
+    item.socket.io.on("error", (error: string) => {
       item.connection_state = "Timeout";
       item.connection_state_color = "red";
-      console.log(`${item.name} connector error: ${error}`);
+      console.error(`${item.name} error: ${error}`);
     });
   });
 }
