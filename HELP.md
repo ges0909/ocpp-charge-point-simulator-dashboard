@@ -76,6 +76,10 @@ deno install npm:vue-i18n@10
 
 [How to use Vue 3?](https://socket.io/how-to/use-with-vue)
 
+Server:
+
+Client:
+
 ```bash
-deno install npm:socket.io
+deno install npm:socket.io-client
 ```

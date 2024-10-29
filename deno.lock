@@ -521,6 +521,7 @@
         "npm:@fortawesome/fontawesome-free@^6.6.0",
         "npm:@mdi/font@^7.4.47",
         "npm:@vitejs/plugin-vue@^5.1.4",
+        "npm:socket.io-client@^4.8.1",
         "npm:typescript@~5.6.2",
         "npm:vite-plugin-vuetify@^2.0.4",
         "npm:vite@^5.4.9",

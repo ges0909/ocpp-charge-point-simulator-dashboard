@@ -10,16 +10,12 @@
     <template v-slot:item.connection_state="{ item }">
       <div class="text-begin">
         <v-chip
-          :color="item.connection_state ? 'green' : 'red'"
-          :text="
-            item.connection_state
-              ? t('message.connected')
-              : t('message.disconnected')
-          "
+          :color="item.connection_state_color"
           class="text-uppercase"
           size="small"
           label
-        ></v-chip>
+          >{{ item.connection_state }}
+        </v-chip>
       </div>
     </template>
 
@@ -70,7 +66,7 @@
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.backendUrl"
+                    v-model="editedItem.backend_url"
                     :label="t('message.header_backend_url')"
                   ></v-text-field>
                 </v-row>
@@ -123,6 +119,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
+import { io } from "socket.io-client";
+
+const default_backend_url = "ws://localhost:8081/ocpp";
 
 const { t } = useI18n();
 const dialog = ref(false);
@@ -143,12 +142,12 @@ const items: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
-  backendUrl: "http://localhost:3000",
+  backend_url: default_backend_url,
   connectors: 1,
 });
 const defaultItem = ref({
   name: "",
-  backendUrl: "http://localhost:3000",
+  backend_url: default_backend_url,
   connectors: 1,
 });
 const formTitle = computed(() => {
@@ -156,6 +155,8 @@ const formTitle = computed(() => {
     ? t("message.title_add")
     : t("message.title_edit");
 });
+
+// const connectionStates = ["None", "Connected", "Disconnected", "Timeout"];
 
 const chargingStates = [
   "Available",
@@ -175,84 +176,117 @@ function initialize() {
     {
       name: "Frozen Yogurt",
       connectors: 2,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Ice cream sandwich",
       connectors: 2,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Eclair",
       connectors: 1,
-      connection_state: false,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Cupcake",
       connectors: 1,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Gingerbread",
       connectors: 3,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Jelly bean",
       connectors: 2,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Lollipop",
       connectors: 1,
-      connection_state: false,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Honeycomb",
       connectors: 1,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "Donut",
       connectors: 1,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
     {
       name: "KitKat",
       connectors: 1,
-      connection_state: true,
+      connection_state: "None",
       charging_state: "Available",
       meter_value: "",
-      backendUrl: "http://localhost:3000",
+      backend_url: default_backend_url,
+      connection_state_color: ref("grey"),
     },
   ];
+
+  items.value.forEach((item) => {
+    const socket = io(item.backend_url, {
+      transports: ["websocket"],
+      autoConnect: true,
+      timeout: 20000, // timeout in milliseconds for each connection attempt
+    });
+    socket.on("connect", () => {
+      item.connection_state = "Connected";
+      item.connection_state_color = "green";
+      console.log(`${item.name} connected`);
+    });
+    socket.on("disconnect", () => {
+      item.connection_state = "Disconnected";
+      item.connection_state_color = "orange";
+      console.log(`${item.name} disconnect`);
+    });
+    socket.io.on("error", (error) => {
+      item.connection_state = "Timeout";
+      item.connection_state_color = "red";
+      console.log(`${item.name} connector error: ${error}`);
+    });
+  });
 }
 
 function editItem(item) {
