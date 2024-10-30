@@ -1,0 +1,18 @@
+export const deDE = {
+  ok: "OK",
+  cancel: "Abbrechen",
+  add: "Hinzufügen",
+  remove: "Ladestation entfernen?",
+  title: "Ladestationen",
+  title_add: "Ladestation hinzufügen",
+  title_edit: "Ladestation ändern",
+  actions: "Aktionen",
+  connected: "Verbunden",
+  disconnected: "Getrennt",
+  header_name: "Stationsname",
+  header_connectors: "Anschlüsse",
+  header_connection_state: "Verbindungsstatus",
+  header_charging_state: "Ladestatus",
+  header_meter_value: "Verbrauch",
+  header_backend_url: "Backend URL",
+};

@@ -44,12 +44,12 @@
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t("message.title") }}
+          {{ $t("title") }}
         </v-toolbar-title>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props">
-              {{ $t("message.add") }}
+              {{ $t("add") }}
             </v-btn>
           </template>
           <v-card>
@@ -61,29 +61,29 @@
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                     v-model="editedItem.name"
-                    :label="t('message.header_name')"
+                    :label="t('header_name')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                     v-model="editedItem.backend_url"
-                    :label="t('message.header_backend_url')"
+                    :label="t('header_backend_url')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                     v-model="editedItem.connectors"
-                    :label="t('message.header_connectors')"
+                    :label="t('header_connectors')"
                   ></v-text-field>
                 </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="close">
-                {{ $t("message.cancel") }}
+                {{ $t("cancel") }}
               </v-btn>
               <v-btn color="blue-darken-1" variant="text" @click="save">
-                {{ $t("message.ok") }}
+                {{ $t("ok") }}
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -93,18 +93,18 @@
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">
-              {{ $t("message.remove") }}
+              {{ $t("remove") }}
             </v-card-title>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="closeDelete">
-                {{ $t("message.cancel") }}
+                {{ $t("cancel") }}
               </v-btn>
               <v-btn
                 color="blue-darken-1"
                 variant="text"
                 @click="deleteItemConfirm"
               >
-                {{ $t("message.ok") }}</v-btn
+                {{ $t("ok") }}</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -128,15 +128,15 @@ const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
   {
-    title: t("message.header_name"),
+    title: t("header_name"),
     key: "name",
     align: "start",
   },
-  { title: t("message.header_connectors"), key: "connectors" },
-  { title: t("message.header_connection_state"), key: "connection_state" },
-  { title: t("message.header_charging_state"), key: "charging_state" },
-  { title: t("message.header_meter_value"), key: "meter_value" },
-  { title: t("message.actions"), key: "actions", sortable: false },
+  { title: t("header_connectors"), key: "connectors" },
+  { title: t("header_connection_state"), key: "connection_state" },
+  { title: t("header_charging_state"), key: "charging_state" },
+  { title: t("header_meter_value"), key: "meter_value" },
+  { title: t("actions"), key: "actions", sortable: false },
 ]);
 const items: Ref = ref([]);
 const editedIndex = ref(-1);
@@ -151,9 +151,7 @@ const defaultItem = ref({
   connectors: 1,
 });
 const formTitle = computed(() => {
-  return editedIndex.value === -1
-    ? t("message.title_add")
-    : t("message.title_edit");
+  return editedIndex.value === -1 ? t("title_add") : t("title_edit");
 });
 
 // const connectionStates = ["Connected", "Disconnected", "Timeout"];
