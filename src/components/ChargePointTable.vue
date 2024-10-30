@@ -119,12 +119,12 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
-import { io } from "socket.io-client";
 import {
   default_backend_url,
   charge_point_table_header,
   charge_point_table_data,
-} from "../model/charge_points";
+} from "../model/chargepoints.ts";
+import { connect } from "../socket.ts";
 
 const { t } = useI18n();
 const dialog = ref(false);
@@ -163,34 +163,7 @@ const chargingStates = [
 
 function initialize() {
   items.value = charge_point_table_data;
-
-  items.value.forEach((item) => {
-    item.socket = io(item.backend_url, {
-      transports: ["websocket"],
-      autoConnect: true,
-      timeout: 20000, // timeout in milliseconds for each connection attempt
-    });
-    item.socket.on("connect", () => {
-      item.connection_state = "Connected";
-      item.connection_state_color = "green";
-      console.log(`${item.name} connected`);
-    });
-    item.socket.io.on("ping", () => {
-      item.connection_state = "Connected";
-      item.connection_state_color = "green";
-      console.log(`${item.name} ping`);
-    });
-    item.socket.on("disconnect", (reason: string, detail: string) => {
-      item.connection_state = "Disconnected";
-      item.connection_state_color = "orange";
-      console.log(`${item.name} disconnect: reason ${reason}, ${detail}`);
-    });
-    item.socket.io.on("error", (error: string) => {
-      item.connection_state = "Timeout";
-      item.connection_state_color = "red";
-      console.error(`${item.name} error: ${error}`);
-    });
-  });
+  connect(items.value);
 }
 
 function editItem(item) {

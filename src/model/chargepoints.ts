@@ -18,6 +18,19 @@ export const charge_point_table_header = [
   { title: t("actions"), key: "actions", sortable: false },
 ];
 
+export type ChargePoint = {
+  name: string;
+  connectors: number;
+  connection_state: string;
+  charging_state: any;
+  meter_value: string;
+  connection_state_color: any;
+  socket: any;
+  backend_url: string;
+  username: string;
+  password: string;
+};
+
 export const charge_point_table_data = [
   {
     name: "Frozen Yogurt",
@@ -26,8 +39,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Ice cream sandwich",
@@ -36,8 +51,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Eclair",
@@ -46,8 +63,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Cupcake",
@@ -56,8 +75,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Gingerbread",
@@ -66,8 +87,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Jelly bean",
@@ -76,8 +99,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Lollipop",
@@ -86,8 +111,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Honeycomb",
@@ -96,8 +123,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "Donut",
@@ -106,8 +135,10 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
   {
     name: "KitKat",
@@ -116,7 +147,9 @@ export const charge_point_table_data = [
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
-    backend_url: default_backend_url,
     socket: null,
+    backend_url: default_backend_url,
+    username: "test",
+    password: "test",
   },
 ];
