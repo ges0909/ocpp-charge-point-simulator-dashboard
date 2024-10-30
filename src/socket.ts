@@ -10,22 +10,26 @@ export function connect(items: ChargePoint[]) {
     console.log(url);
     item.socket = new WebSocket(url);
 
-    item.socket.addEventListener("open", (event: Event) => {
+    item.socket.onopen = (event: Event) => {
       item.connection_state = "Open";
       item.connection_state_color = "green";
-      console.log(`charge point '${item.name}', connection opened, ${event})`);
-    });
+      console.log(`charge point '${item.name}', connection opened, ${event}`);
+    };
 
-    item.socket.addEventListener("close", (event: Event) => {
+    item.socket.onclose = (event: Event) => {
       item.connection_state = "Close";
       item.connection_state_color = "grey";
-      console.log(`charge point '${item.name}', connection closed, ${event})`);
-    });
+      console.log(`charge point '${item.name}', connection closed, ${event}`);
+    };
 
-    item.socket.addEventListener("event", (event: Event) => {
+    item.socket.onerror = (event: Event) => {
       item.connection_state = "Error";
       item.connection_state_color = "red";
-      console.error(`charge point '${item.name}', connection error, ${event})`);
-    });
+      console.error(`charge point '${item.name}', connection error, ${event}`);
+    };
+
+    item.socket.onmessage = (event: Event) => {
+      console.error(`charge point '${item.name}', message received, ${event}`);
+    };
   });
 }
