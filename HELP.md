@@ -71,15 +71,3 @@ deno install npm:@fortawesome/fontawesome-free npm:@mdi/font
 ```bash
 deno install npm:vue-i18n@10
 ```
-
-## Socket.IO
-
-[How to use Vue 3?](https://socket.io/how-to/use-with-vue)
-
-Server:
-
-Client:
-
-```bash
-deno install npm:socket.io-client
-```

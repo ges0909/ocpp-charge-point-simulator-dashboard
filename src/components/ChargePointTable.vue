@@ -7,7 +7,7 @@
     <!-- table columns -->
 
     <!-- column: connection state -->
-    <template v-slot:item.connection_state="{ item }">
+    <template v-slot:item.connection_state="{ item }: { item: ChargePoint }">
       <div class="text-begin">
         <v-chip
           :color="item.connection_state_color"
@@ -123,6 +123,7 @@ import {
   default_backend_url,
   charge_point_table_header,
   charge_point_table_data,
+  ChargePoint,
 } from "../model/chargepoints.ts";
 import { connect } from "../socket.ts";
 
@@ -166,13 +167,13 @@ function initialize() {
   connect(items.value);
 }
 
-function editItem(item) {
+function editItem(item: ChargePoint) {
   editedIndex.value = items.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialog.value = true;
 }
 
-function deleteItem(item) {
+function deleteItem(item: ChargePoint) {
   editedIndex.value = items.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
   dialogDelete.value = true;

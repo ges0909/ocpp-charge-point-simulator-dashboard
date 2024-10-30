@@ -3,7 +3,8 @@ import { i18n } from "../i18n.ts";
 
 const { t } = i18n.global;
 
-export const default_backend_url = "ws://localhost:8081/ocpp";
+export const default_backend_url =
+  "ws://${username}:${password}@localhost:8081/ocpp";
 
 export const charge_point_table_header = [
   {
@@ -35,7 +36,7 @@ export const charge_point_table_data = [
   {
     name: "Frozen Yogurt",
     connectors: 2,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -47,7 +48,7 @@ export const charge_point_table_data = [
   {
     name: "Ice cream sandwich",
     connectors: 2,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -59,7 +60,7 @@ export const charge_point_table_data = [
   {
     name: "Eclair",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -71,7 +72,7 @@ export const charge_point_table_data = [
   {
     name: "Cupcake",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -83,7 +84,7 @@ export const charge_point_table_data = [
   {
     name: "Gingerbread",
     connectors: 3,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -95,7 +96,7 @@ export const charge_point_table_data = [
   {
     name: "Jelly bean",
     connectors: 2,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -107,7 +108,7 @@ export const charge_point_table_data = [
   {
     name: "Lollipop",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -119,7 +120,7 @@ export const charge_point_table_data = [
   {
     name: "Honeycomb",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -131,7 +132,7 @@ export const charge_point_table_data = [
   {
     name: "Donut",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
@@ -143,7 +144,7 @@ export const charge_point_table_data = [
   {
     name: "KitKat",
     connectors: 1,
-    connection_state: "Disconnected",
+    connection_state: "Close",
     charging_state: "Available",
     meter_value: "",
     connection_state_color: ref("grey"),
