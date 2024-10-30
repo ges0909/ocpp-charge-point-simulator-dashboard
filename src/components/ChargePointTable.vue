@@ -26,6 +26,7 @@
           :items="chargingStates"
           v-model="item.charging_state"
           density="compact"
+          class="h-auto"
         ></v-select>
       </div>
     </template>
@@ -219,3 +220,9 @@ watch(dialogDelete, (val) => {
 
 initialize();
 </script>
+
+<style scoped lang="css">
+:deep(.v-field) {
+  font-size: 0.85rem !important;
+}
+</style>
