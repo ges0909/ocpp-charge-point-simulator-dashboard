@@ -6,9 +6,12 @@ function u(strings: TemplateStringsArray, username: string, password: string) {
 
 export function connect(items: ChargePoint[]) {
   items.forEach((item: ChargePoint) => {
-    let url = u`ws://${item.username}:${item.password}@localhost:8081/ocpp`;
-    console.log(url);
-    item.socket = new WebSocket(url);
+    let url = u`http://${item.username}:${item.password}@localhost:8081/ocpp`;
+    item.socket = new WebSocket(url, {
+      headers: {
+        ["Authorization"]: `Basic abc`,
+      },
+    });
 
     item.socket.onopen = (event: Event) => {
       item.connection_state = "Open";

@@ -35,7 +35,8 @@ typescript 5.6.2
 
 Deno uses `Vite`as build tool.
 
-Setup project (see more: [Build a Vue.js App](https://docs.deno.com/runtime/tutorials/how_to_with_npm/vue/)):
+Setup project (see more:
+[Build a Vue.js App](https://docs.deno.com/runtime/tutorials/how_to_with_npm/vue/)):
 
 ```bash
 deno run -A npm:create-vite
@@ -71,3 +72,11 @@ deno install npm:@fortawesome/fontawesome-free npm:@mdi/font
 ```bash
 deno install npm:vue-i18n@10
 ```
+
+## Problem
+
+### Basic Auth
+
+Sending HTTP authorization header is not possible for a web socket.
+
+[The protocol requires sending a header with the WebSocket connection](https://stackoverflow.com/questions/78848325/the-protocol-requires-sending-a-header-with-the-websocket-connection)
