@@ -120,24 +120,16 @@
 import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
 import { io } from "socket.io-client";
-
-const default_backend_url = "ws://localhost:8081/ocpp";
+import {
+  default_backend_url,
+  charge_point_table_header,
+  charge_point_table_data,
+} from "../model/charge_points";
 
 const { t } = useI18n();
 const dialog = ref(false);
 const dialogDelete = ref(false);
-const headers = ref([
-  {
-    title: t("header_name"),
-    key: "name",
-    align: "start",
-  },
-  { title: t("header_connectors"), key: "connectors" },
-  { title: t("header_connection_state"), key: "connection_state" },
-  { title: t("header_charging_state"), key: "charging_state" },
-  { title: t("header_meter_value"), key: "meter_value" },
-  { title: t("actions"), key: "actions", sortable: false },
-]);
+const headers = ref(charge_point_table_header);
 const items: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
@@ -170,108 +162,7 @@ const chargingStates = [
 ];
 
 function initialize() {
-  items.value = [
-    {
-      name: "Frozen Yogurt",
-      connectors: 2,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Ice cream sandwich",
-      connectors: 2,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Eclair",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Cupcake",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Gingerbread",
-      connectors: 3,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Jelly bean",
-      connectors: 2,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Lollipop",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Honeycomb",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "Donut",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-    {
-      name: "KitKat",
-      connectors: 1,
-      connection_state: "Disconnected",
-      charging_state: "Available",
-      meter_value: "",
-      connection_state_color: ref("grey"),
-      backend_url: default_backend_url,
-      socket: null,
-    },
-  ];
+  items.value = charge_point_table_data;
 
   items.value.forEach((item) => {
     item.socket = io(item.backend_url, {

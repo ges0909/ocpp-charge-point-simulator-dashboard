@@ -9,7 +9,7 @@ export const enUS = {
   actions: "Actions",
   connected: "Connected",
   disconnected: "Disconnected",
-  header_name: "Name",
+  header_name: "Station name",
   header_connectors: "Connectors",
   header_connection_state: "Connection state",
   header_charging_state: "Charging state",

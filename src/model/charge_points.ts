@@ -1,0 +1,122 @@
+import { ref } from "vue";
+import { i18n } from "../i18n.ts";
+
+const { t } = i18n.global;
+
+export const default_backend_url = "ws://localhost:8081/ocpp";
+
+export const charge_point_table_header = [
+  {
+    title: t("header_name"),
+    key: "name",
+    align: "start",
+  },
+  { title: t("header_connectors"), key: "connectors" },
+  { title: t("header_connection_state"), key: "connection_state" },
+  { title: t("header_charging_state"), key: "charging_state" },
+  { title: t("header_meter_value"), key: "meter_value" },
+  { title: t("actions"), key: "actions", sortable: false },
+];
+
+export const charge_point_table_data = [
+  {
+    name: "Frozen Yogurt",
+    connectors: 2,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Ice cream sandwich",
+    connectors: 2,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Eclair",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Cupcake",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Gingerbread",
+    connectors: 3,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Jelly bean",
+    connectors: 2,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Lollipop",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Honeycomb",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "Donut",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+  {
+    name: "KitKat",
+    connectors: 1,
+    connection_state: "Disconnected",
+    charging_state: "Available",
+    meter_value: "",
+    connection_state_color: ref("grey"),
+    backend_url: default_backend_url,
+    socket: null,
+  },
+];
