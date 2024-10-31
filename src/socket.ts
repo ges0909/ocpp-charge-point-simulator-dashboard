@@ -9,26 +9,26 @@ export function connect(items: ChargePoint[]) {
     const url = u`http://${item.username}:${item.password}@localhost:8081/ocpp`;
     item.socket = new WebSocket(url);
 
-    item.socket.onopen = (event: Event) => {
+    item.socket.addEventListener("open", (event: Event) => {
       item.connection_state = "Open";
       item.connection_state_color = "green";
       console.log(`charge point '${item.name}', connection opened, ${event}`);
-    };
+    });
 
-    item.socket.onclose = (event: Event) => {
+    item.socket.addEventListener("close", (event: Event) => {
       item.connection_state = "Close";
       item.connection_state_color = "grey";
       console.log(`charge point '${item.name}', connection closed, ${event}`);
-    };
+    });
 
-    item.socket.onerror = (event: Event) => {
+    item.socket.addEventListener("error", (event: Event) => {
       item.connection_state = "Error";
       item.connection_state_color = "red";
       console.error(`charge point '${item.name}', connection error, ${event}`);
-    };
+    });
 
-    item.socket.onmessage = (event: Event) => {
+    item.socket.addEventListener("message", (event: Event) => {
       console.error(`charge point '${item.name}', message received, ${event}`);
-    };
+    });
   });
 }

@@ -16,7 +16,7 @@ export type ChargePoint = {
   charging_state: Ref<string>;
   meter_value: string;
   connection_state_color: string;
-  socket: any;
+  socket: WebSocket;
   backend_url: string;
   username: string;
   password: string;
