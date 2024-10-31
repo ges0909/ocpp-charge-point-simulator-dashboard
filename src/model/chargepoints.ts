@@ -1,10 +1,26 @@
 import { ref } from "vue";
+import type { Ref } from "vue";
 import { i18n } from "../i18n.ts";
 
 const { t } = i18n.global;
 
 export const default_backend_url =
   "ws://${username}:${password}@localhost:8081/ocpp";
+
+export type Header = (typeof charge_point_table_header)[number];
+
+export type ChargePoint = {
+  name: string;
+  connectors: number;
+  connection_state: string;
+  charging_state: Ref<string>;
+  meter_value: string;
+  connection_state_color: string;
+  socket: any;
+  backend_url: string;
+  username: string;
+  password: string;
+};
 
 export const charge_point_table_header = [
   {
@@ -18,19 +34,6 @@ export const charge_point_table_header = [
   { title: t("header_meter_value"), key: "meter_value" },
   { title: t("actions"), key: "actions", sortable: false },
 ];
-
-export type ChargePoint = {
-  name: string;
-  connectors: number;
-  connection_state: string;
-  charging_state: any;
-  meter_value: string;
-  connection_state_color: any;
-  socket: any;
-  backend_url: string;
-  username: string;
-  password: string;
-};
 
 export const charge_point_table_data = [
   {

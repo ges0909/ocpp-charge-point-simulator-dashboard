@@ -1,13 +1,16 @@
 <template>
   <v-data-table
     :headers="headers"
+    :item-value="(item: ChargePoint) => `${item.name}`"
     :items="items"
     :sort-by="[{ key: 'name', order: 'asc' }]"
+    items-per-page="10"
+    show-select
   >
     <!-- table columns -->
 
     <!-- column: connection state -->
-    <template v-slot:item.connection_state="{ item }: { item: ChargePoint }">
+    <template v-slot:item.connection_state="{ item }: { item: any }">
       <div class="text-begin">
         <v-chip
           :color="item.connection_state_color"
@@ -20,7 +23,7 @@
     </template>
 
     <!-- column: charging state -->
-    <template v-slot:item.charging_state="{ item }">
+    <template v-slot:item.charging_state="{ item }: { item: any }">
       <div class="h-50 w-50">
         <v-select
           :items="chargingStates"
@@ -32,7 +35,7 @@
     </template>
 
     <!-- column: actions -->
-    <template v-slot:item.actions="{ item }">
+    <template v-slot:item.actions="{ item }: { item: any }">
       <v-icon class="me-2" size="small" @click="editItem(item)">
         mdi-pencil
       </v-icon>
@@ -45,12 +48,12 @@
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ $t("title") }}
+          {{ t("title") }}
         </v-toolbar-title>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props">
-              {{ $t("add") }}
+              {{ t("add") }}
             </v-btn>
           </template>
           <v-card>
@@ -81,10 +84,10 @@
             </v-card-text>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="close">
-                {{ $t("cancel") }}
+                {{ t("cancel") }}
               </v-btn>
               <v-btn color="blue-darken-1" variant="text" @click="save">
-                {{ $t("ok") }}
+                {{ t("ok") }}
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -94,18 +97,18 @@
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">
-              {{ $t("remove") }}
+              {{ t("remove") }}
             </v-card-title>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="closeDelete">
-                {{ $t("cancel") }}
+                {{ t("cancel") }}
               </v-btn>
               <v-btn
                 color="blue-darken-1"
                 variant="text"
                 @click="deleteItemConfirm"
               >
-                {{ $t("ok") }}</v-btn
+                {{ t("ok") }}</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -120,11 +123,11 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
+import type { ChargePoint } from "../model/chargepoints.ts";
 import {
   default_backend_url,
   charge_point_table_header,
   charge_point_table_data,
-  ChargePoint,
 } from "../model/chargepoints.ts";
 import { connect } from "../socket.ts";
 

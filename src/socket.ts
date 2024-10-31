@@ -1,4 +1,4 @@
-import { ChargePoint } from "./model/chargepoints";
+import { ChargePoint } from "./model/chargepoints.ts";
 
 function u(strings: TemplateStringsArray, username: string, password: string) {
   return strings[0] + username + strings[1] + password + strings[2];
@@ -6,12 +6,8 @@ function u(strings: TemplateStringsArray, username: string, password: string) {
 
 export function connect(items: ChargePoint[]) {
   items.forEach((item: ChargePoint) => {
-    let url = u`http://${item.username}:${item.password}@localhost:8081/ocpp`;
-    item.socket = new WebSocket(url, {
-      headers: {
-        ["Authorization"]: `Basic abc`,
-      },
-    });
+    const url = u`http://${item.username}:${item.password}@localhost:8081/ocpp`;
+    item.socket = new WebSocket(url);
 
     item.socket.onopen = (event: Event) => {
       item.connection_state = "Open";
