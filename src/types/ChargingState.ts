@@ -1,13 +1,17 @@
-type ChargingState =
-  | "Available"
-  | "Preparing"
-  | "Charging"
-  | "Finishing"
-  | "Reserved"
-  | "Faulted"
-  | "Accepted"
-  | "Invalid"
-  | "Blocked"
-  | "Expired";
+const CHARGING_STATES = [
+    "Available",
+    "Preparing",
+    "Charging",
+    "Finishing",
+    "Reserved",
+    "Faulted",
+    "Accepted",
+    "Invalid",
+    "Blocked",
+    "Expired",
+]
 
-export type { ChargingState };
+type ChargingState = typeof CHARGING_STATES[number]
+
+export {CHARGING_STATES}
+export type {ChargingState};

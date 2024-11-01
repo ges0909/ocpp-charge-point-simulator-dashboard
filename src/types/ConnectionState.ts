@@ -1,3 +1,12 @@
-type ConnectionState = "CONNECTING" | "OPEN" | "CLOSING" | "CLOSED" | "ERROR";
+const CONNECTION_STATES = [
+    "CONNECTING",
+    "OPEN",
+    "CLOSING",
+    "CLOSED",
+    "ERROR",
+]
 
-export type { ConnectionState };
+type ConnectionState = typeof CONNECTION_STATES[number];
+
+export {CONNECTION_STATES};
+export type {ConnectionState};

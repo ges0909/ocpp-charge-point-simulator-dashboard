@@ -27,7 +27,7 @@
       <div class="h-50 w-50">
         <v-select
             v-model="item.charging_state"
-            :items="chargingStates"
+            :items="CHARGING_STATES"
             class="h-auto"
             density="compact"
         ></v-select>
@@ -117,19 +117,17 @@
 
 <script lang="ts" setup>
 import {useI18n} from "vue-i18n";
-import {computed, nextTick, ref, Ref, watch} from "vue";
+import {computed, nextTick, ref, watch} from "vue";
 import {ChargePoint} from "../types/ChargePoint";
-import {ChargingState} from "../types/ChargingState";
-import {ChargePointHeader} from "../types/ChargePointHeader.ts";
 import {charge_point_table_header} from "../data/charge-point-table-header";
 import {charge_point_table_data} from "../data/charge-point-table-data";
+import {CHARGING_STATES} from "../types/ChargingState";
 import {ws_connect} from "../web_socket.ts";
 
 const {t} = useI18n();
 
-const headers: Ref<Array<ChargePointHeader>> = ref(charge_point_table_header);
-const items: Ref<Array<ChargePoint>> = ref([]);
-
+const headers = ref(charge_point_table_header);
+const items = ref([]);
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const editedIndex = ref(-1);
@@ -146,19 +144,6 @@ const formTitle = computed(() => {
 });
 
 // const connectionStates = ["Connected", "Disconnected", "Timeout"];
-
-const chargingStates: ChargingState[] = [
-  "Available",
-  "Preparing",
-  "Charging",
-  "Finishing",
-  "Reserved",
-  "Faulted",
-  "Accepted",
-  "Invalid",
-  "Blocked",
-  "Expired",
-];
 
 function initialize() {
   items.value = charge_point_table_data;
