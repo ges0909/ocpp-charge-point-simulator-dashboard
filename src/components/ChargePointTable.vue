@@ -123,12 +123,12 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, nextTick, ref, watch, Ref } from "vue";
-import type { ChargePoint } from "../model/chargepoints.ts";
+import { ChargePoint } from "../types/ChargePoint";
 import {
   default_backend_url,
   charge_point_table_header,
   charge_point_table_data,
-} from "../model/chargepoints.ts";
+} from "../data/chargepoints.ts";
 import { connect } from "../socket.ts";
 
 const { t } = useI18n();

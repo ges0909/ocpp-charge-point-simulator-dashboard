@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import type { Ref } from "vue";
 import { i18n } from "../i18n.ts";
+import { ChargePoint } from "../types/ChargePoint.ts";
 
 const { t } = i18n.global;
 
@@ -8,19 +8,6 @@ export const default_backend_url =
   "ws://${username}:${password}@localhost:8081/ocpp";
 
 export type Header = (typeof charge_point_table_header)[number];
-
-export type ChargePoint = {
-  name: string;
-  connectors: number;
-  connection_state: string;
-  charging_state: Ref<string>;
-  meter_value: string;
-  connection_state_color: string;
-  socket: WebSocket;
-  backend_url: string;
-  username: string;
-  password: string;
-};
 
 export const charge_point_table_header = [
   {
@@ -35,12 +22,12 @@ export const charge_point_table_header = [
   { title: t("actions"), key: "actions", sortable: false },
 ];
 
-export const charge_point_table_data = [
+export const charge_point_table_data: ChargePoint[] = [
   {
     name: "Frozen Yogurt",
     connectors: 2,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -51,8 +38,8 @@ export const charge_point_table_data = [
   {
     name: "Ice cream sandwich",
     connectors: 2,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -63,8 +50,8 @@ export const charge_point_table_data = [
   {
     name: "Eclair",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -75,8 +62,8 @@ export const charge_point_table_data = [
   {
     name: "Cupcake",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -87,8 +74,8 @@ export const charge_point_table_data = [
   {
     name: "Gingerbread",
     connectors: 3,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -99,8 +86,8 @@ export const charge_point_table_data = [
   {
     name: "Jelly bean",
     connectors: 2,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -111,8 +98,8 @@ export const charge_point_table_data = [
   {
     name: "Lollipop",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -123,8 +110,8 @@ export const charge_point_table_data = [
   {
     name: "Honeycomb",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -135,8 +122,8 @@ export const charge_point_table_data = [
   {
     name: "Donut",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
@@ -147,8 +134,8 @@ export const charge_point_table_data = [
   {
     name: "KitKat",
     connectors: 1,
-    connection_state: "Close",
-    charging_state: "Available",
+    connection_state: ref("CLOSED"),
+    charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,

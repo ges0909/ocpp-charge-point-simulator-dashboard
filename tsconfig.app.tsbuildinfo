@@ -1,1 +1,1 @@
-{"root":["./src/main.ts","./src/vite-env.d.ts"],"errors":true,"version":"5.6.3"}
+{"root":["./src/i18n.ts","./src/main.ts","./src/socket.ts","./src/vite-env.d.ts","./src/data/chargepoints.ts","./src/locales/de-de.ts","./src/locales/en-us.ts","./src/types/chargepoint.ts","./src/types/chargingstate.ts","./src/types/connectionstate.ts"],"errors":true,"version":"5.6.3"}
