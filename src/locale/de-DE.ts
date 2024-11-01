@@ -14,5 +14,4 @@ export const deDE = {
   header_connection_state: "Verbindungsstatus",
   header_charging_state: "Ladestatus",
   header_meter_value: "Verbrauch",
-  header_backend_url: "Backend URL",
 };

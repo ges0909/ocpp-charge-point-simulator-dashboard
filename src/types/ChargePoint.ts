@@ -11,7 +11,6 @@ interface ChargePoint {
   meter_value: string;
   connection_state_color: Ref<StateColor>;
   socket: WebSocket | null;
-  backend_url: string;
   username: string;
   password: string;
 }

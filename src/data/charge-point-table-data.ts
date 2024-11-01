@@ -1,21 +1,19 @@
 import { ref } from "vue";
 import { ChargePoint } from "../types/ChargePoint";
-import { backend_url} from "./backend_url";
-
 
 const charge_point_table_data: ChargePoint[] = [
   {
-    name: "Frozen Yogurt",
+    name: "valantic_charger",
     connectors: 2,
     connection_state: ref("CLOSED"),
     charging_state: ref("Available"),
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
+
   {
     name: "Ice cream sandwich",
     connectors: 2,
@@ -24,7 +22,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -36,7 +33,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -48,7 +44,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -60,7 +55,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -72,7 +66,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -84,7 +77,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -96,7 +88,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -108,7 +99,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -120,7 +110,6 @@ const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: backend_url,
     username: "test",
     password: "test",
   },

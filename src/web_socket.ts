@@ -1,14 +1,10 @@
 import { ref } from "vue";
+import { backend_url } from "./data//backend_url";
 import { ChargePoint } from "./types/ChargePoint";
 
-function u(strings: TemplateStringsArray, username: string, password: string) {
-  return strings[0] + username + strings[1] + password + strings[2];
-}
-
-const connect = function (items: ChargePoint[]) {
+const ws_connect = function (items: ChargePoint[]) {
   items.forEach((item: ChargePoint) => {
-    const url = u`http://${item.username}:${item.password}@localhost:8081/ocpp`;
-    item.socket = new WebSocket(url);
+    item.socket = new WebSocket(backend_url + "/" + item.name);
 
     item.socket.addEventListener("open", (event: Event) => {
       item.connection_state = ref("OPEN");
@@ -35,4 +31,4 @@ const connect = function (items: ChargePoint[]) {
   });
 };
 
-export { connect };
+export { ws_connect };

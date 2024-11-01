@@ -14,5 +14,4 @@ export const enUS = {
   header_connection_state: "Connection state",
   header_charging_state: "Charging state",
   header_meter_value: "Consumption",
-  header_backend_url: "Backend URL",
 };

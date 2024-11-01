@@ -70,12 +70,6 @@
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                      v-model="editedItem.backend_url"
-                      :label="t('header_backend_url')"
-                  ></v-text-field>
-                </v-row>
-                <v-row cols="12" md="4" sm="6">
-                  <v-text-field
                       v-model="editedItem.connectors"
                       :label="t('header_connectors')"
                   ></v-text-field>
@@ -127,10 +121,9 @@ import {computed, nextTick, ref, Ref, watch} from "vue";
 import {ChargePoint} from "../types/ChargePoint";
 import {ChargingState} from "../types/ChargingState";
 import {ChargePointHeader} from "../types/ChargePointHeader.ts";
-import {backend_url} from "../data/backend_url";
 import {charge_point_table_header} from "../data/charge-point-table-header";
 import {charge_point_table_data} from "../data/charge-point-table-data";
-import {connect} from "../socket";
+import {ws_connect} from "../web_socket.ts";
 
 const {t} = useI18n();
 
@@ -142,12 +135,10 @@ const dialogDelete = ref(false);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
-  backend_url: backend_url,
   connectors: 1,
 });
 const defaultItem = ref({
   name: "",
-  backend_url: backend_url,
   connectors: 1,
 });
 const formTitle = computed(() => {
@@ -171,7 +162,7 @@ const chargingStates: ChargingState[] = [
 
 function initialize() {
   items.value = charge_point_table_data;
-  connect(items.value);
+  ws_connect(items.value);
 }
 
 function editItem(item: ChargePoint) {
