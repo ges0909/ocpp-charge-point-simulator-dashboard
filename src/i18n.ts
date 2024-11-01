@@ -1,7 +1,7 @@
 import { createI18n } from "vue-i18n";
 
-import { deDE } from "./locales/de-DE.ts";
-import { enUS } from "./locales/en-US.ts";
+import { deDE } from "./locale/de-DE";
+import { enUS } from "./locale/en-US";
 type MessageSchema = typeof enUS;
 
 export const i18n = createI18n<[MessageSchema], "en-US" | "de-DE">({

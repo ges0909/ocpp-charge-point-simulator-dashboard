@@ -1,11 +1,11 @@
 <template>
   <v-data-table
-    :headers="headers"
-    :item-value="(item: ChargePoint) => `${item.name}`"
-    :items="items"
-    :sort-by="[{ key: 'name', order: 'asc' }]"
-    items-per-page="10"
-    show-select
+      :headers="headers"
+      :item-value="(item: ChargePoint) => `${item.name}`"
+      :items="items"
+      :sort-by="[{ key: 'name', order: 'asc' }]"
+      items-per-page="10"
+      show-select
   >
     <!-- table columns -->
 
@@ -13,11 +13,11 @@
     <template v-slot:item.connection_state="{ item }: { item: any }">
       <div class="text-begin">
         <v-chip
-          :color="item.connection_state_color"
-          class="text-uppercase"
-          size="small"
-          label
-          >{{ item.connection_state }}
+            :color="item.connection_state_color"
+            class="text-uppercase"
+            label
+            size="small"
+        >{{ item.connection_state }}
         </v-chip>
       </div>
     </template>
@@ -26,10 +26,10 @@
     <template v-slot:item.charging_state="{ item }: { item: any }">
       <div class="h-50 w-50">
         <v-select
-          :items="chargingStates"
-          v-model="item.charging_state"
-          density="compact"
-          class="h-auto"
+            v-model="item.charging_state"
+            :items="chargingStates"
+            class="h-auto"
+            density="compact"
         ></v-select>
       </div>
     </template>
@@ -39,7 +39,7 @@
       <v-icon class="me-2" size="small" @click="editItem(item)">
         mdi-pencil
       </v-icon>
-      <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
+      <v-icon size="small" @click="deleteItem(item)"> mdi-delete</v-icon>
     </template>
 
     <!-- dialogs -->
@@ -64,20 +64,20 @@
               <v-container>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.name"
-                    :label="t('header_name')"
+                      v-model="editedItem.name"
+                      :label="t('header_name')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.backend_url"
-                    :label="t('header_backend_url')"
+                      v-model="editedItem.backend_url"
+                      :label="t('header_backend_url')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
-                    v-model="editedItem.connectors"
-                    :label="t('header_connectors')"
+                      v-model="editedItem.connectors"
+                      :label="t('header_connectors')"
                   ></v-text-field>
                 </v-row>
               </v-container>
@@ -104,11 +104,12 @@
                 {{ t("cancel") }}
               </v-btn>
               <v-btn
-                color="blue-darken-1"
-                variant="text"
-                @click="deleteItemConfirm"
+                  color="blue-darken-1"
+                  variant="text"
+                  @click="deleteItemConfirm"
               >
-                {{ t("ok") }}</v-btn
+                {{ t("ok") }}
+              </v-btn
               >
             </v-card-actions>
           </v-card>
@@ -120,31 +121,33 @@
   </v-data-table>
 </template>
 
-<script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import { computed, nextTick, ref, watch, Ref } from "vue";
-import { ChargePoint } from "../types/ChargePoint";
-import {
-  default_backend_url,
-  charge_point_table_header,
-  charge_point_table_data,
-} from "../data/chargepoints.ts";
-import { connect } from "../socket.ts";
+<script lang="ts" setup>
+import {useI18n} from "vue-i18n";
+import {computed, nextTick, ref, Ref, watch} from "vue";
+import {ChargePoint} from "../types/ChargePoint";
+import {ChargingState} from "../types/ChargingState";
+import {ChargePointHeader} from "../types/ChargePointHeader.ts";
+import {backend_url} from "../data/backend_url";
+import {charge_point_table_header} from "../data/charge-point-table-header";
+import {charge_point_table_data} from "../data/charge-point-table-data";
+import {connect} from "../socket";
 
-const { t } = useI18n();
+const {t} = useI18n();
+
+const headers: Ref<Array<ChargePointHeader>> = ref(charge_point_table_header);
+const items: Ref<Array<ChargePoint>> = ref([]);
+
 const dialog = ref(false);
 const dialogDelete = ref(false);
-const headers = ref(charge_point_table_header);
-const items: Ref = ref([]);
 const editedIndex = ref(-1);
 const editedItem = ref({
   name: "",
-  backend_url: default_backend_url,
+  backend_url: backend_url,
   connectors: 1,
 });
 const defaultItem = ref({
   name: "",
-  backend_url: default_backend_url,
+  backend_url: backend_url,
   connectors: 1,
 });
 const formTitle = computed(() => {
@@ -153,7 +156,7 @@ const formTitle = computed(() => {
 
 // const connectionStates = ["Connected", "Disconnected", "Timeout"];
 
-const chargingStates = [
+const chargingStates: ChargingState[] = [
   "Available",
   "Preparing",
   "Charging",
@@ -224,7 +227,7 @@ watch(dialogDelete, (val) => {
 initialize();
 </script>
 
-<style scoped lang="css">
+<style lang="css" scoped>
 :deep(.v-field) {
   font-size: 0.85rem !important;
 }

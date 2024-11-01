@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { ChargePoint } from "./types/ChargePoint.ts";
+import { ChargePoint } from "./types/ChargePoint";
 
 function u(strings: TemplateStringsArray, username: string, password: string) {
   return strings[0] + username + strings[1] + password + strings[2];
@@ -12,19 +12,19 @@ const connect = function (items: ChargePoint[]) {
 
     item.socket.addEventListener("open", (event: Event) => {
       item.connection_state = ref("OPEN");
-      item.connection_state_color = "green";
+      item.connection_state_color = ref("green");
       console.log(`charge point '${item.name}', connection opened, ${event}`);
     });
 
     item.socket.addEventListener("close", (event: Event) => {
       item.connection_state = ref("CLOSED");
-      item.connection_state_color = "grey";
+      item.connection_state_color = ref("grey");
       console.log(`charge point '${item.name}', connection closed, ${event}`);
     });
 
     item.socket.addEventListener("error", (event: Event) => {
       item.connection_state = ref("ERROR");
-      item.connection_state_color = "red";
+      item.connection_state_color = ref("red");
       console.error(`charge point '${item.name}', connection error, ${event}`);
     });
 

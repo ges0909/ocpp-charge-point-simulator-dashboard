@@ -1,28 +1,9 @@
 import { ref } from "vue";
-import { i18n } from "../i18n.ts";
-import { ChargePoint } from "../types/ChargePoint.ts";
+import { ChargePoint } from "../types/ChargePoint";
+import { backend_url} from "./backend_url";
 
-const { t } = i18n.global;
 
-export const default_backend_url =
-  "ws://${username}:${password}@localhost:8081/ocpp";
-
-export type Header = (typeof charge_point_table_header)[number];
-
-export const charge_point_table_header = [
-  {
-    title: t("header_name"),
-    key: "name",
-    align: "start",
-  },
-  { title: t("header_connectors"), key: "connectors" },
-  { title: t("header_connection_state"), key: "connection_state" },
-  { title: t("header_charging_state"), key: "charging_state" },
-  { title: t("header_meter_value"), key: "meter_value" },
-  { title: t("actions"), key: "actions", sortable: false },
-];
-
-export const charge_point_table_data: ChargePoint[] = [
+const charge_point_table_data: ChargePoint[] = [
   {
     name: "Frozen Yogurt",
     connectors: 2,
@@ -31,7 +12,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -43,7 +24,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -55,7 +36,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -67,7 +48,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -79,7 +60,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -91,7 +72,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -103,7 +84,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -115,7 +96,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -127,7 +108,7 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
@@ -139,8 +120,10 @@ export const charge_point_table_data: ChargePoint[] = [
     meter_value: "",
     connection_state_color: ref("grey"),
     socket: null,
-    backend_url: default_backend_url,
+    backend_url: backend_url,
     username: "test",
     password: "test",
   },
 ];
+
+export { charge_point_table_data };
