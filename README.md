@@ -21,17 +21,7 @@ v8 12.9.202.13-rusty
 typescript 5.6.2
 ```
 
-Upgrade deno (**Don't use! Deno 2.3 seems to be buggy!**):
-
-```bash
-deno upgrade
-deno --version
-deno 2.0.3 (stable, release, x86_64-pc-windows-msvc)
-v8 12.9.202.13-rusty
-typescript 5.6.2
-```
-
-## Project Scaffolding
+## Project setup
 
 Deno uses `Vite`as build tool.
 
@@ -51,6 +41,10 @@ Deno has an integrated development server:
 ```bash
 deno task dev
 ```
+
+## TypeScript
+
+[TypeScript lernen: Eine Einführung in 80 Minuten](https://www.youtube.com/watch?v=_CaGUZNEobk)
 
 ## Vue 3
 
