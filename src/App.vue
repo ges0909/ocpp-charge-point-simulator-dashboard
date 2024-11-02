@@ -2,7 +2,7 @@
   <ChargePointTable/>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import ChargePointTable from "./components/ChargePointTable.vue";
 </script>
 

@@ -1,3 +1,3 @@
-type StateColor = "grey" | "green" | "red";
+type StateColor = 'grey' | 'green' | 'red'
 
-export type { StateColor };
+export type { StateColor }

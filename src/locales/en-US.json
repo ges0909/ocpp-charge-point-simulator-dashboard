@@ -1,0 +1,17 @@
+{
+  "ok": "OK",
+  "cancel": "Cancel",
+  "add": "New",
+  "remove": "Remove charging station?",
+  "title": "Overview o charging stations",
+  "title_add": "New charging station",
+  "title_edit": "Change charging station",
+  "actions": "Actions",
+  "connected": "Connected",
+  "disconnected": "Disconnected",
+  "header_name": "Station name",
+  "header_connectors": "Connectors",
+  "header_connection_state": "Connection state",
+  "header_charging_state": "Charging state",
+  "header_meter_value": "Consumption"
+}

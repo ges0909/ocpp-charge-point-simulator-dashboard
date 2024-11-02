@@ -1,15 +1,34 @@
-import {createI18n} from "vue-i18n";
+import { createI18n } from 'vue-i18n'
 
-import {deDE} from "./locale/de-DE.ts";
-import {enUS} from "./locale/en-US.ts";
+import en_US from './locales/en-US.json' with { type: 'json' }
+import de_DE from './locales/de-DE.json' with { type: 'json' }
 
-type MessageSchema = typeof enUS;
-
-export const i18n = createI18n<[MessageSchema], "en-US" | "de-DE">({
-    locale: "de-DE",
-    fallbackLocale: "en-US",
+const i18n = createI18n({
+    locale: 'en-US',
+    fallbackLocale: 'en-US',
     messages: {
-        "en-US": enUS,
-        "de-DE": deDE,
+        'en-US': {
+            $vuetify: {
+                ...en_US,
+                dataFooter: {
+                    itemsPerPageText: 'Items per page:',
+                    pageText: '{0}-{1} of {2}',
+                    itemsPerPageAll: 'All',
+                },
+            },
+        },
+        'de-DE': {
+            $vuetify: {
+                ...de_DE,
+                dataFooter: {
+                    itemsPerPageText: 'Einträge pro Seite:',
+                    pageText: '{0}-{1} of {2}',
+                    itemsPerPageAll: 'Alle',
+                },
+            },
+        },
     },
-});
+    legacy: false,
+})
+
+export { i18n }

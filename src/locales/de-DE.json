@@ -1,0 +1,17 @@
+{
+  "ok": "OK",
+  "cancel": "Abbrechen",
+  "add": "Neu",
+  "remove": "Ladestation entfernen?",
+  "title": "Ladestationen",
+  "title_add": "Neue Ladestation",
+  "title_edit": "Ladestation ändern",
+  "actions": "Aktionen",
+  "connected": "Verbunden",
+  "disconnected": "Getrennt",
+  "header_name": "Stationsname",
+  "header_connectors": "Anschlüsse",
+  "header_connection_state": "Verbindungsstatus",
+  "header_charging_state": "Ladestatus",
+  "header_meter_value": "Verbrauch"
+}

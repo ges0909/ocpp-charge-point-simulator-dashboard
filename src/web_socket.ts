@@ -1,36 +1,44 @@
-import {ref} from "vue";
-import {ChargePoint} from "./types/ChargePoint.ts";
+import { ref } from 'vue'
+import type { ChargePoint } from './types/ChargePoint.ts'
 
 // "ws://${username}:${password}@localhost:8081/ocpp";
-const backend_url: string = "ws://localhost:8081/ocpp";
+const backend_url: string = 'ws://localhost:8081/ocpp'
 
 const ws_connect = function (items: ChargePoint[]) {
-    items.forEach((item: ChargePoint) => {
-        item.socket = new WebSocket(backend_url + "/" + item.name);
+	items.forEach((item: ChargePoint) => {
+		item.socket = new WebSocket(backend_url + '/' + item.name)
 
-        item.socket.addEventListener("open", (event: Event) => {
-            item.connection_state = ref("OPEN");
-            item.connection_state_color = ref("green");
-            console.log(`charge point '${item.name}', connection opened, ${event}`);
-        });
+		item.socket.addEventListener('open', (event: Event) => {
+			item.connection_state = ref('OPEN')
+			item.connection_state_color = ref('green')
+			console.log(
+				`charge point '${item.name}', connection opened, ${event}`,
+			)
+		})
 
-        item.socket.addEventListener("close", (event: Event) => {
-            item.connection_state = ref("CLOSED");
-            item.connection_state_color = ref("grey");
-            console.log(`charge point '${item.name}', connection closed, ${event}`);
-        });
+		item.socket.addEventListener('close', (event: Event) => {
+			item.connection_state = ref('CLOSED')
+			item.connection_state_color = ref('grey')
+			console.log(
+				`charge point '${item.name}', connection closed, ${event}`,
+			)
+		})
 
-        item.socket.addEventListener("error", (event: Event) => {
-            item.connection_state = ref("ERROR");
-            item.connection_state_color = ref("red");
-            console.error(`charge point '${item.name}', connection error, ${event}`);
-        });
+		item.socket.addEventListener('error', (event: Event) => {
+			item.connection_state = ref('ERROR')
+			item.connection_state_color = ref('red')
+			console.error(
+				`charge point '${item.name}', connection error, ${event}`,
+			)
+		})
 
-        item.socket.addEventListener("message", (event: Event) => {
-            item.connection_state = ref("OPEN");
-            console.error(`charge point '${item.name}', message received, ${event}`);
-        });
-    });
-};
+		item.socket.addEventListener('message', (event: Event) => {
+			item.connection_state = ref('OPEN')
+			console.error(
+				`charge point '${item.name}', message received, ${event}`,
+			)
+		})
+	})
+}
 
-export {ws_connect};
+export { ws_connect }

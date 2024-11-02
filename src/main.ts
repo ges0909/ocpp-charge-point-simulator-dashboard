@@ -1,27 +1,30 @@
-import {createApp} from "vue";
+import { createApp } from 'vue'
 
-import "vuetify/lib/styles/main.css";
-import {createVuetify} from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
-import {fa} from "vuetify/iconsets/fa";
-import {aliases, mdi} from "vuetify/iconsets/mdi";
-import "@mdi/font/css/materialdesignicons.css";
-import "@fortawesome/fontawesome-free/css/all.css";
+import 'vuetify/lib/styles/main.css'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import { fa } from 'vuetify/iconsets/fa'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import '@mdi/font/css/materialdesignicons.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
-import {i18n} from "./i18n.ts";
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+import { useI18n } from 'vue-i18n'
+import { i18n } from './i18n.ts'
 
-import "./style.css";
-import App from "./App.vue";
-
-const app = createApp(App);
+import './style.css'
+import App from './App.vue'
 
 const vuetify = createVuetify({
+    locale: {
+        adapter: createVueI18nAdapter({ i18n, useI18n }),
+    },
     theme: {
-        defaultTheme: "light",
+        defaultTheme: 'light',
     },
     icons: {
-        defaultSet: "mdi",
+        defaultSet: 'mdi',
         aliases,
         sets: {
             mdi,
@@ -30,6 +33,11 @@ const vuetify = createVuetify({
     },
     components,
     directives,
-});
+})
 
-app.use(vuetify).use(i18n).mount("#app");
+const app = createApp(App)
+
+app.use(vuetify)
+app.use(i18n)
+
+app.mount('#app')
