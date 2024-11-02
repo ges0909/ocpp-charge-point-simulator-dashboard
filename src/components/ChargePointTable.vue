@@ -92,12 +92,14 @@
                   <v-text-field
                       v-model="editedItem.name"
                       :label="t('$msg.header_name')"
+                      :rules="[required]"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                       v-model="editedItem.connectors"
                       :label="t('$msg.header_connectors')"
+                      :rules="[required]"
                   ></v-text-field>
                 </v-row>
               </v-container>
@@ -168,6 +170,9 @@ const defaultItem = ref({
   name: "",
   connectors: 1,
 });
+
+const required = (value: string) => !!value || t("$msg.required")
+
 const formTitle = computed(() => {
   return editedIndex.value === -1 ? t("$msg.title_add") : t("$msg.title_edit");
 });
