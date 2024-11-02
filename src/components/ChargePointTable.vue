@@ -11,7 +11,7 @@
 
     <!-- column: connection state -->
     <template v-slot:item.connection_state="{ item }: { item: any }">
-      <v-row class="h-75 w-75">
+      <v-row align="center">
         <v-chip :color="item.connection_state_color" class="primary fa-primary">
           {{ item.connection_state }}
         </v-chip>
@@ -21,15 +21,15 @@
             :items="CONNECTION_ACTIONS"
             variant="underlined"
             density="compact"
-            class="primary fa-primary"
+            class="primary fa-primary "
         ></v-select>
       </v-row>
     </template>
 
     <!-- column: charging state -->
     <template v-slot:item.charging_state="{ item }: { item: any }">
-      <v-row class="h-75 w-75">
-        <v-chip class="primary fa-primary">
+      <v-row align="center">
+        <v-chip color="grey" class="primary fa-primary">
           {{ item.charging_state }}
         </v-chip>
         <v-spacer></v-spacer>
@@ -40,6 +40,21 @@
             density="compact"
             class="primary fa-primary"
         ></v-select>
+      </v-row>
+    </template>
+
+    <!-- column: meter value -->
+    <template v-slot:item.meter_value="{ item }: { item: any }">
+      <v-row align="center">
+        <v-chip color="grey" class="primary fa-primary">
+          {{ item.meter_value }}
+        </v-chip>
+        <v-spacer></v-spacer>
+        <v-text-field
+            v-model="item.meter_value"
+            class="primary fa-primary"
+            variant="underlined"
+        ></v-text-field>
       </v-row>
     </template>
 
@@ -212,4 +227,9 @@ ws_connect(items.value);
 </script>
 
 <style lang="css" scoped>
+
+:deep(.v-field) {
+  font-size: 0.875rem !important;
+}
+
 </style>
