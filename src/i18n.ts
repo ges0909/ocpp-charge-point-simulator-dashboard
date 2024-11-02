@@ -6,27 +6,27 @@ import messagesEN from './locales/en-US.json' with { type: 'json' }
 import messagesDE from './locales/de-DE.json' with { type: 'json' }
 
 const i18n = createI18n({
-    locale: 'de',
-    fallbackLocale: 'en',
-    messages: {
-        'en': {
-            $msg: {
-                ...messagesEN,
-            },
-            $vuetify: {
-                ...en,
-            },
-        },
-        'de': {
-            $msg: {
-                ...messagesDE,
-            },
-            $vuetify: {
-                ...de,
-            },
-        },
-    },
-    legacy: false,
+	locale: 'de',
+	fallbackLocale: 'en',
+	messages: {
+		'en': {
+			$msg: {
+				...messagesEN,
+			},
+			$vuetify: {
+				...en,
+			},
+		},
+		'de': {
+			$msg: {
+				...messagesDE,
+			},
+			$vuetify: {
+				...de,
+			},
+		},
+	},
+	legacy: false,
 })
 
 export { i18n }

@@ -4,6 +4,7 @@
       :item-value="(item: ChargePoint) => `${item.name}`"
       :items="items"
       :sort-by="[{ key: 'name', order: 'asc' }]"
+      @input="enterSelect"
       items-per-page="10"
       show-select
   >
@@ -13,11 +14,11 @@
     <template v-slot:item.connection_state="{ item }: { item: any }">
       <v-row align="center">
         <v-chip :color="item.connection_state_color" class="primary fa-primary">
-          {{ item.connection_state }}
+          {{ item.connection_state_confirmed }}
         </v-chip>
         <v-spacer></v-spacer>
         <v-select
-            v-model="item.connection_state"
+            v-model="item.connection_state_requested"
             :items="CONNECTION_ACTIONS"
             variant="underlined"
             density="compact"
@@ -30,11 +31,11 @@
     <template v-slot:item.charging_state="{ item }: { item: any }">
       <v-row align="center">
         <v-chip color="grey" class="primary fa-primary">
-          {{ item.charging_state }}
+          {{ item.charging_state_confirmed }}
         </v-chip>
         <v-spacer></v-spacer>
         <v-select
-            v-model="item.charging_state"
+            v-model="item.charging_state_requested"
             :items="CHARGING_STATES"
             variant="underlined"
             density="compact"
@@ -47,11 +48,11 @@
     <template v-slot:item.meter_value="{ item }: { item: any }">
       <v-row align="center">
         <v-chip color="grey" class="primary fa-primary">
-          {{ item.meter_value }}
+          {{ item.meter_value_confirmed }}
         </v-chip>
         <v-spacer></v-spacer>
         <v-text-field
-            v-model="item.meter_value"
+            v-model="item.meter_value_requested"
             class="primary fa-primary"
             variant="underlined"
         ></v-text-field>
@@ -102,6 +103,13 @@
                       :rules="[required]"
                   ></v-text-field>
                 </v-row>
+                <v-row cols="12" md="4" sm="6">
+                  <v-text-field
+                      v-model="editedItem.backend_url"
+                      :label="t('$msg.header_backend_url')"
+                      :rules="[required]"
+                  ></v-text-field>
+                </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions>
@@ -149,8 +157,8 @@ import {computed, nextTick, ref, watch, Ref} from "vue";
 import type {ChargePoint} from "../types/ChargePoint.ts";
 import {CONNECTION_ACTIONS} from "../types/ConnectionAction.ts";
 import {CHARGING_STATES} from "../types/ChargingState.ts";
-import {charge_point_table_header} from "../data/charge-point-table-header.ts";
-import {charge_point_table_data} from "../data/charge-point-table-data.ts";
+import {charge_point_table_header} from "../data/ChargePointTableHeader.ts";
+import {charge_point_table_data} from "../data/ChargePointTableData.ts";
 
 import {ws_connect} from "../web_socket.ts";
 
@@ -172,6 +180,8 @@ const defaultItem = ref({
 });
 
 const required = (value: string) => !!value || t("$msg.required")
+
+const enterSelect = (event: Event) => console.log(event)
 
 const formTitle = computed(() => {
   return editedIndex.value === -1 ? t("$msg.title_add") : t("$msg.title_edit");

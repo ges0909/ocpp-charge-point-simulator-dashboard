@@ -1,6 +1,6 @@
 const CONNECTION_ACTIONS = [
-    'Open',
-    'Close',
+	'Open',
+	'Close',
 ]
 
 type ConnectionState = typeof CONNECTION_ACTIONS[number]

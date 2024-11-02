@@ -16,22 +16,22 @@ import { i18n } from './i18n.ts'
 import App from './App.vue'
 
 const vuetify = createVuetify({
-    locale: {
-        adapter: createVueI18nAdapter({ i18n, useI18n }),
-    },
-    theme: {
-        defaultTheme: 'light',
-    },
-    icons: {
-        defaultSet: 'mdi',
-        aliases,
-        sets: {
-            mdi,
-            fa,
-        },
-    },
-    components,
-    directives,
+	locale: {
+		adapter: createVueI18nAdapter({ i18n, useI18n }),
+	},
+	theme: {
+		defaultTheme: 'light',
+	},
+	icons: {
+		defaultSet: 'mdi',
+		aliases,
+		sets: {
+			mdi,
+			fa,
+		},
+	},
+	components,
+	directives,
 })
 
 const app = createApp(App)
