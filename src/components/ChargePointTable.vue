@@ -48,12 +48,12 @@
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>
-          {{ t("$vuetify.title") }}
+          {{ t("$msg.title") }}
         </v-toolbar-title>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props">
-              {{ t("$vuetify.add") }}
+              {{ t("$msg.add") }}
             </v-btn>
           </template>
           <v-card>
@@ -65,23 +65,23 @@
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                       v-model="editedItem.name"
-                      :label="t('$vuetify.header_name')"
+                      :label="t('$msg.header_name')"
                   ></v-text-field>
                 </v-row>
                 <v-row cols="12" md="4" sm="6">
                   <v-text-field
                       v-model="editedItem.connectors"
-                      :label="t('$vuetify.header_connectors')"
+                      :label="t('$msg.header_connectors')"
                   ></v-text-field>
                 </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="close">
-                {{ t("$vuetify.cancel") }}
+                {{ t("$msg.cancel") }}
               </v-btn>
               <v-btn color="blue-darken-1" variant="text" @click="save">
-                {{ t("$vuetify.ok") }}
+                {{ t("$msg.ok") }}
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -91,18 +91,18 @@
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">
-              {{ t("$vuetify.remove") }}
+              {{ t("$msg.remove") }}
             </v-card-title>
             <v-card-actions>
               <v-btn color="blue-darken-1" variant="text" @click="closeDelete">
-                {{ t("$vuetify.cancel") }}
+                {{ t("$msg.cancel") }}
               </v-btn>
               <v-btn
                   color="blue-darken-1"
                   variant="text"
                   @click="deleteItemConfirm"
               >
-                {{ t("$vuetify.ok") }}
+                {{ t("$msg.ok") }}
               </v-btn
               >
             </v-card-actions>
@@ -118,10 +118,11 @@
 <script lang="ts" setup>
 import {useI18n} from "vue-i18n";
 import {computed, nextTick, ref, watch} from "vue";
-import {ChargePoint} from "../types/ChargePoint";
-import {charge_point_table_header} from "../data/charge-point-table-header";
-import {charge_point_table_data} from "../data/charge-point-table-data";
-import {CHARGING_STATES} from "../types/ChargingState";
+import type {ChargePoint} from "../types/ChargePoint.ts";
+import {CHARGING_STATES} from "../types/ChargingState.ts";
+import {charge_point_table_header} from "../data/charge-point-table-header.ts";
+import {charge_point_table_data} from "../data/charge-point-table-data.ts";
+
 import {ws_connect} from "../web_socket.ts";
 
 const {t} = useI18n();
@@ -140,7 +141,7 @@ const defaultItem = ref({
   connectors: 1,
 });
 const formTitle = computed(() => {
-  return editedIndex.value === -1 ? t("$vuetify.title_add") : t("$vuetify.title_edit");
+  return editedIndex.value === -1 ? t("$msg.title_add") : t("$msg.title_edit");
 });
 
 // const connectionStates = ["Connected", "Disconnected", "Timeout"];

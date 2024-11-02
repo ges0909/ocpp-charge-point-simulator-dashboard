@@ -9,7 +9,7 @@
   "actions": "Aktionen",
   "connected": "Verbunden",
   "disconnected": "Getrennt",
-  "header_name": "Stationsname",
+  "header_name": "Name",
   "header_connectors": "Anschlüsse",
   "header_connection_state": "Verbindungsstatus",
   "header_charging_state": "Ladestatus",
