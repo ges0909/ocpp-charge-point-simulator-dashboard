@@ -11,27 +11,36 @@
 
     <!-- column: connection state -->
     <template v-slot:item.connection_state="{ item }: { item: any }">
-      <div class="text-begin">
-        <v-chip
-            :color="item.connection_state_color"
-            class="text-uppercase"
-            label
-            size="small"
-        >{{ item.connection_state }}
+      <v-row class="h-75 w-75">
+        <v-chip :color="item.connection_state_color" class="primary fa-primary">
+          {{ item.connection_state }}
         </v-chip>
-      </div>
+        <v-spacer></v-spacer>
+        <v-select
+            v-model="item.connection_state"
+            :items="CONNECTION_ACTIONS"
+            variant="underlined"
+            density="compact"
+            class="primary fa-primary"
+        ></v-select>
+      </v-row>
     </template>
 
     <!-- column: charging state -->
     <template v-slot:item.charging_state="{ item }: { item: any }">
-      <div class="h-50 w-50">
+      <v-row class="h-75 w-75">
+        <v-chip class="primary fa-primary">
+          {{ item.charging_state }}
+        </v-chip>
+        <v-spacer></v-spacer>
         <v-select
             v-model="item.charging_state"
             :items="CHARGING_STATES"
-            class="h-auto"
+            variant="underlined"
             density="compact"
+            class="primary fa-primary"
         ></v-select>
-      </div>
+      </v-row>
     </template>
 
     <!-- column: actions -->
@@ -39,7 +48,9 @@
       <v-icon class="me-2" size="small" @click="editItem(item)">
         mdi-pencil
       </v-icon>
-      <v-icon size="small" @click="deleteItem(item)"> mdi-delete</v-icon>
+      <v-icon class="me-2" size="small" @click="deleteItem(item)">
+        mdi-delete
+      </v-icon>
     </template>
 
     <!-- dialogs -->
@@ -117,8 +128,9 @@
 
 <script lang="ts" setup>
 import {useI18n} from "vue-i18n";
-import {computed, nextTick, ref, watch} from "vue";
+import {computed, nextTick, ref, watch, Ref} from "vue";
 import type {ChargePoint} from "../types/ChargePoint.ts";
+import {CONNECTION_ACTIONS} from "../types/ConnectionAction.ts";
 import {CHARGING_STATES} from "../types/ChargingState.ts";
 import {charge_point_table_header} from "../data/charge-point-table-header.ts";
 import {charge_point_table_data} from "../data/charge-point-table-data.ts";
@@ -128,7 +140,8 @@ import {ws_connect} from "../web_socket.ts";
 const {t} = useI18n();
 
 const headers = ref(charge_point_table_header);
-const items = ref([]);
+const items: Ref<Array<ChargePoint>> = ref(charge_point_table_data);
+
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const editedIndex = ref(-1);
@@ -143,13 +156,6 @@ const defaultItem = ref({
 const formTitle = computed(() => {
   return editedIndex.value === -1 ? t("$msg.title_add") : t("$msg.title_edit");
 });
-
-// const connectionStates = ["Connected", "Disconnected", "Timeout"];
-
-function initialize() {
-  items.value = charge_point_table_data;
-  ws_connect(items.value);
-}
 
 function editItem(item: ChargePoint) {
   editedIndex.value = items.value.indexOf(item);
@@ -201,11 +207,9 @@ watch(dialogDelete, (val) => {
   val || closeDelete();
 });
 
-initialize();
+ws_connect(items.value);
+
 </script>
 
 <style lang="css" scoped>
-:deep(.v-field) {
-  font-size: 0.85rem !important;
-}
 </style>

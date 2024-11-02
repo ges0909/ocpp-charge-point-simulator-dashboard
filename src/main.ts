@@ -13,7 +13,6 @@ import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
 import { useI18n } from 'vue-i18n'
 import { i18n } from './i18n.ts'
 
-import './style.css'
 import App from './App.vue'
 
 const vuetify = createVuetify({
