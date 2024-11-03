@@ -87,11 +87,15 @@
           {{ t("$msg.title") }}
         </v-toolbar-title>
         <v-dialog v-model="dialog" max-width="500px">
+          <!--
+            -- 'Add' button
+            -->
           <template v-slot:activator="{ props }">
-            <v-btn class="mb-2" color="primary" dark v-bind="props">
+            <v-btn variant="elevated" color="primary" class="mr-2" v-bind="props">
               {{ t("$msg.add") }}
             </v-btn>
           </template>
+
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ formTitle }}</span>
@@ -122,10 +126,10 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="blue-darken-1" variant="text" @click="close">
+              <v-btn variant="elevated" color="primary" class="mr-2" @click="close">
                 {{ t("$msg.cancel") }}
               </v-btn>
-              <v-btn color="blue-darken-1" variant="text" @click="save">
+              <v-btn variant="elevated" color="primary" class="mr-2" @click="save">
                 {{ t("$msg.ok") }}
               </v-btn>
             </v-card-actions>

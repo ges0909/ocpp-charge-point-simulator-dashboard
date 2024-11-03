@@ -1,14 +1,16 @@
 import { createApp } from 'vue'
 
-import 'vuetify/lib/styles/main.css'
+import '@mdi/font/css/materialdesignicons.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import { fa } from 'vuetify/iconsets/fa'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+
+import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { fa } from 'vuetify/iconsets/fa'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import { md1 } from 'vuetify/blueprints'
-import '@mdi/font/css/materialdesignicons.css'
-import '@fortawesome/fontawesome-free/css/all.css'
+
+import { md2 } from 'vuetify/blueprints'
 
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
 import { useI18n } from 'vue-i18n'
@@ -21,7 +23,7 @@ const vuetify = createVuetify({
         adapter: createVueI18nAdapter({ i18n, useI18n }),
     },
     // https://vuetifyjs.com/en/features/blueprints/#usage
-    blueprint: md1,
+    blueprint: md2,
     theme: {
         defaultTheme: 'light',
     },

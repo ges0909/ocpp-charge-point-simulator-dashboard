@@ -17,5 +17,6 @@
   "header_meter_value": "Consumption",
   "required": "Required",
   "select": "Select",
-  "kwh": "kWh"
+  "kwh": "kWh",
+  "site.title": "OCPP Charge Point Simulator"
 }

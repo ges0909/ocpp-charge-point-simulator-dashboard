@@ -3,7 +3,9 @@
   <!-- https://vuetifyjs.com/en/features/application-layout/#placing-components -->
   <v-layout class="rounded rounded-md">
 
-    <v-app-bar title="Valantic OCPP Charge Point Simulator">
+    <v-app-bar title="OCPP Charge Point Simulator" color="secondary">
+      <v-btn variant="elevated" color="primary" class="mr-2">Import</v-btn>
+      <v-btn variant="elevated" color="primary" class="mr-2">Export</v-btn>
     </v-app-bar>
 
     <!--
@@ -14,8 +16,26 @@
     </v-navigation-drawer>
     -->
 
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px">
-      <ChargePointTable/>
+    <v-main class="d-flex align-center justify-center">
+      <v-container>
+        <v-row no-gutters>
+          <v-col>
+            <v-row>
+              <v-chip>
+                BootNotification
+              </v-chip>
+            </v-row>
+            <v-row>
+              <v-chip>
+                StatusNotification
+              </v-chip>
+            </v-row>
+          </v-col>
+          <v-col cols="10">
+            <ChargePointTable/>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
 
     <!--
