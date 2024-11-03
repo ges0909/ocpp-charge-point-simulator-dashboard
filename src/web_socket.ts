@@ -6,7 +6,7 @@ const ws_connect = function (item: ChargePoint) {
 
     item.socket.addEventListener('open', (event: Event) => {
         item.connection_state_confirmed = ref('OPEN')
-        item.connection_state_color = ref('green')
+        item.connection_state_color = 'green'
         console.log(
             `charge point '${item.name}', connection opened, ${event}`,
         )
@@ -14,7 +14,7 @@ const ws_connect = function (item: ChargePoint) {
 
     item.socket.addEventListener('close', (event: Event) => {
         item.connection_state_confirmed = ref('CLOSED')
-        item.connection_state_color = ref('grey')
+        item.connection_state_color = 'grey'
         console.log(
             `charge point '${item.name}', connection closed, ${event}`,
         )
@@ -22,14 +22,13 @@ const ws_connect = function (item: ChargePoint) {
 
     item.socket.addEventListener('error', (event: Event) => {
         item.connection_state_confirmed = ref('ERROR')
-        item.connection_state_color = ref('red')
+        item.connection_state_color = 'red'
         console.error(
             `charge point '${item.name}', connection error, ${event}`,
         )
     })
 
     item.socket.addEventListener('message', (event: Event) => {
-        item.connection_state_confirmed = ref('OPEN')
         console.error(
             `charge point '${item.name}', message received, ${event}`,
         )

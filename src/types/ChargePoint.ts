@@ -1,7 +1,6 @@
 import { Ref } from 'vue'
 import type { ConnectionState } from './ConnectionState.ts'
 import type { ChargingState } from './ChargingState.ts'
-import type { StateColor } from './StateColor.ts'
 
 interface ChargePoint {
     name: string
