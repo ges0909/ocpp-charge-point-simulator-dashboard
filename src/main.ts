@@ -6,6 +6,7 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { fa } from 'vuetify/iconsets/fa'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { md1 } from 'vuetify/blueprints'
 import '@mdi/font/css/materialdesignicons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
@@ -16,22 +17,24 @@ import { i18n } from './i18n.ts'
 import App from './App.vue'
 
 const vuetify = createVuetify({
-	locale: {
-		adapter: createVueI18nAdapter({ i18n, useI18n }),
-	},
-	theme: {
-		defaultTheme: 'light',
-	},
-	icons: {
-		defaultSet: 'mdi',
-		aliases,
-		sets: {
-			mdi,
-			fa,
-		},
-	},
-	components,
-	directives,
+    locale: {
+        adapter: createVueI18nAdapter({ i18n, useI18n }),
+    },
+    // https://vuetifyjs.com/en/features/blueprints/#usage
+    blueprint: md1,
+    theme: {
+        defaultTheme: 'light',
+    },
+    icons: {
+        defaultSet: 'mdi',
+        aliases,
+        sets: {
+            mdi,
+            fa,
+        },
+    },
+    components,
+    directives,
 })
 
 const app = createApp(App)
