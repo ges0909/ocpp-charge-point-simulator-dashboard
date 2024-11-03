@@ -4,7 +4,7 @@
       :item-value="(item: ChargePoint) => `${item.name}`"
       :items="items"
       :sort-by="[{ key: 'name', order: 'asc' }]"
-      @input="enterSelect"
+      @input="selectEvent"
       items-per-page="10"
       show-select
   >
@@ -13,7 +13,7 @@
     <!-- column: connection state -->
     <template v-slot:item.connection_state="{ item }: { item: any }">
       <v-row align="center">
-        <v-chip :color="item.connection_state_color" class="primary fa-primary">
+        <v-chip color="item.connection_state_color" class="primary fa-primary">
           {{ item.connection_state_confirmed }}
         </v-chip>
         <v-spacer></v-spacer>
@@ -22,7 +22,8 @@
             :items="CONNECTION_ACTIONS"
             variant="underlined"
             density="compact"
-            class="primary fa-primary "
+            class="primary fa-primary"
+            :label="t('$msg.select')"
         ></v-select>
       </v-row>
     </template>
@@ -40,6 +41,7 @@
             variant="underlined"
             density="compact"
             class="primary fa-primary"
+            :label="t('$msg.select')"
         ></v-select>
       </v-row>
     </template>
@@ -55,6 +57,7 @@
             v-model="item.meter_value_requested"
             class="primary fa-primary"
             variant="underlined"
+            :label="t('$msg.kwh')"
         ></v-text-field>
       </v-row>
     </template>
@@ -152,20 +155,22 @@
 </template>
 
 <script lang="ts" setup>
-import {useI18n} from "vue-i18n";
 import {computed, nextTick, ref, watch, Ref} from "vue";
+
+import {useI18n} from "vue-i18n";
+
 import type {ChargePoint} from "../types/ChargePoint.ts";
 import {CONNECTION_ACTIONS} from "../types/ConnectionAction.ts";
 import {CHARGING_STATES} from "../types/ChargingState.ts";
-import {charge_point_table_header} from "../data/ChargePointTableHeader.ts";
-import {charge_point_table_data} from "../data/ChargePointTableData.ts";
+import {CHARGE_POINT_TABLE_HEADER} from "../data/ChargePointTableHeader.ts";
+import {CHARGE_POINT_TABLE_DATA} from "../data/ChargePointTableData.ts";
 
 import {ws_connect} from "../web_socket.ts";
 
 const {t} = useI18n();
 
-const headers = ref(charge_point_table_header);
-const items: Ref<Array<ChargePoint>> = ref(charge_point_table_data);
+const headers = ref(CHARGE_POINT_TABLE_HEADER);
+const items: Ref<Array<ChargePoint>> = ref(CHARGE_POINT_TABLE_DATA);
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -181,7 +186,7 @@ const defaultItem = ref({
 
 const required = (value: string) => !!value || t("$msg.required")
 
-const enterSelect = (event: Event) => console.log(event)
+const selectEvent = (event: Event) => console.log(event)
 
 const formTitle = computed(() => {
   return editedIndex.value === -1 ? t("$msg.title_add") : t("$msg.title_edit");
@@ -237,8 +242,9 @@ watch(dialogDelete, (val) => {
   val || closeDelete();
 });
 
-ws_connect(items.value);
-
+items.value.forEach((item: ChargePoint) => {
+  ws_connect(item)
+})
 </script>
 
 <style lang="css" scoped>

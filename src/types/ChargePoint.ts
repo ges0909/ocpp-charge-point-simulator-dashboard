@@ -16,7 +16,7 @@ interface ChargePoint {
     meter_value_requested: number | null
     meter_value_confirmed: Ref<number> | null
 
-    connection_state_color: Ref<StateColor>
+    connection_state_color: string
 
     socket: WebSocket | null
     backend_url: string

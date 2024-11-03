@@ -1,9 +1,9 @@
 import { i18n } from '../i18n.ts'
-import type { ChargePointHeader } from '../types/ChargePointHeader.ts'
+import type { VDataTableHeaders } from 'vuetify/components'
 
 const { t } = i18n.global
 
-const charge_point_table_header: ChargePointHeader[] = [
+const CHARGE_POINT_TABLE_HEADER: VDataTableHeaders = [
     {
         title: t('$msg.header_name'),
         key: 'name',
@@ -38,4 +38,4 @@ const charge_point_table_header: ChargePointHeader[] = [
     },
 ]
 
-export { charge_point_table_header }
+export { CHARGE_POINT_TABLE_HEADER }

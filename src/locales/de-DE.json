@@ -15,5 +15,7 @@
   "header_connection_state": "Verbindungsstatus",
   "header_charging_state": "Ladestatus",
   "header_meter_value": "Verbrauch",
-  "required": "Es muss ein Wert angegeben werden"
+  "required": "Es muss ein Wert angegeben werden",
+  "select": "Auswahl",
+  "kwh": "kWh"
 }

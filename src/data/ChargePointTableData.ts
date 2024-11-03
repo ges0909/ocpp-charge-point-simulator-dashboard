@@ -4,7 +4,7 @@ import type { ChargePoint } from '../types/ChargePoint.ts'
 // "ws://${username}:${password}@localhost:8081/ocpp";
 const default_backend_url: string = 'ws://localhost:8081/ocpp'
 
-const charge_point_table_data: Array<ChargePoint> = [
+const CHARGE_POINT_TABLE_DATA: Array<ChargePoint> = [
     {
         name: 'valantic_charger',
         connectors: 2,
@@ -14,7 +14,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(99.99),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -29,7 +29,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(80.0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -44,7 +44,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(77),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -59,7 +59,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -74,7 +74,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -89,7 +89,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -104,7 +104,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -119,7 +119,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -134,7 +134,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -149,7 +149,7 @@ const charge_point_table_data: Array<ChargePoint> = [
         charging_state_confirmed: ref('Available'),
         meter_value_requested: null,
         meter_value_confirmed: ref(0),
-        connection_state_color: ref('grey'),
+        connection_state_color: 'grey',
         backend_url: default_backend_url,
         socket: null,
         username: 'test',
@@ -157,4 +157,4 @@ const charge_point_table_data: Array<ChargePoint> = [
     },
 ]
 
-export { charge_point_table_data }
+export { CHARGE_POINT_TABLE_DATA }

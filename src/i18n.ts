@@ -26,6 +26,7 @@ const i18n = createI18n({
 			},
 		},
 	},
+	// Must be set to 'false', to use Composition API
 	legacy: false,
 })
 

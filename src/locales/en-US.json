@@ -15,5 +15,7 @@
   "header_connection_state": "Connection state",
   "header_charging_state": "Charging state",
   "header_meter_value": "Consumption",
-  "required": "Required"
+  "required": "Required",
+  "select": "Select",
+  "kwh": "kWh"
 }
